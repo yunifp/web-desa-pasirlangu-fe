@@ -9,13 +9,12 @@ interface MasterPostGridProps {
   limit: number;
 }
 
-// ... interface PostItem disesuaikan
 interface PostItem {
   id: string;
   title: string;
   slug: string;
   publishedAt: string;
-  image?: string; // Tambahkan field image
+  image?: string;
   category?: { name: string };
 }
 
@@ -27,7 +26,6 @@ export const MasterPostGrid: React.FC<MasterPostGridProps> = ({
   const [posts, setPosts] = useState<PostItem[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
-  // Helper untuk sanitasi URL gambar
   const sanitizeUrl = (url?: string) => {
     if (!url) return '';
     const cleanUrl = url.trim();
@@ -40,7 +38,6 @@ export const MasterPostGrid: React.FC<MasterPostGridProps> = ({
     const fetchDynamicPosts = async () => {
       try {
         setLoading(true);
-        // Panggil endpoint tanpa /public karena sudah dikonfigurasi di publicApi
         const response = await publicApi.get(`/posts`, {
           params: { category: categorySlug, limit: limit }
         });
@@ -56,45 +53,43 @@ export const MasterPostGrid: React.FC<MasterPostGridProps> = ({
   }, [categorySlug, limit]);
 
   return (
-    <section className="py-20 bg-white border-b border-slate-100 font-sans select-none w-full">
-      <div className="max-w-7xl mx-auto px-6 space-y-10">
-        {/* ... Header ... */}
+    <section className="py-24 bg-slate-50 font-sans select-none w-full">
+      <div className="max-w-7xl mx-auto px-6 space-y-12">
         
         {loading ? (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[...Array(limit)].map((_, i) => <div key={i} className="animate-pulse bg-slate-50 h-[350px] rounded-3xl" />)}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[...Array(limit)].map((_, i) => <div key={i} className="animate-pulse bg-blue-100/50 h-[400px] rounded-[2rem] rounded-tr-none border border-blue-50" />)}
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {posts.map((post) => (
-              <div key={post.id} className="bg-white border border-slate-200 rounded-3xl flex flex-col overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
+              <div key={post.id} className="bg-white border-2 border-blue-50 rounded-[2rem] rounded-tr-none flex flex-col overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-cyan-100 transition-all duration-300 group cursor-pointer" onClick={() => navigate(`/read/${post.slug}`)}>
                 
-                {/* 1. BAGIAN GAMBAR MUNCUL DI SINI */}
                 {post.image && (
-                  <div className="w-full h-48 overflow-hidden">
+                  <div className="w-full h-52 overflow-hidden relative">
                     <img 
                       src={sanitizeUrl(post.image)} 
                       alt={post.title} 
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />
+                    <div className="absolute inset-0 bg-blue-950/10 group-hover:bg-transparent transition-colors duration-300" />
                   </div>
                 )}
 
-                <div className="p-6 flex flex-col justify-between flex-grow">
+                <div className="p-8 flex flex-col justify-between flex-grow bg-white">
                   <div className="space-y-4">
-                    <div className="text-[10px] font-bold text-slate-400 flex items-center gap-2">
-                      <Calendar size={12} /> {new Date(post.publishedAt).toLocaleDateString('id-ID')}
+                    <div className="text-[11px] font-mono font-bold text-slate-400 group-hover:text-cyan-600 transition-colors flex items-center gap-2">
+                      <Calendar size={14} /> {new Date(post.publishedAt).toLocaleDateString('id-ID')}
                     </div>
-                    <h3 className="text-sm font-black text-slate-900 line-clamp-2">
+                    <h3 className="text-base font-black text-slate-800 line-clamp-2 group-hover:text-blue-950 transition-colors leading-snug">
                       {post.title}
                     </h3>
                   </div>
                   
                   <button 
-                    onClick={() => navigate(`/read/${post.slug}`)}
-                    className="mt-6 flex items-center gap-2 text-xs font-bold text-[#0B4028] hover:text-[#C5A059] transition-colors"
+                    className="mt-8 flex items-center gap-2 text-xs font-black text-blue-900 group-hover:text-cyan-600 transition-colors"
                   >
-                    Baca Selengkapnya <ArrowRight size={14} />
+                    Baca Selengkapnya <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                   </button>
                 </div>
               </div>
@@ -104,4 +99,4 @@ export const MasterPostGrid: React.FC<MasterPostGridProps> = ({
       </div>
     </section>
   );
-};  
+};

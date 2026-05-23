@@ -34,6 +34,7 @@ import { MasterCoreValuesGrid } from '../../components/builder/MasterCoreValuesG
 import { MasterLeadershipTeam } from '../../components/builder/MasterLeadershipTeam';
 import { MasterGovernanceStructure } from '../../components/builder/MasterGovernanceStructure';
 import { MasterCertificationsAwards } from '../../components/builder/MasterCertificationsAwards';
+import { MasterProductCatalog } from '../../components/builder/MasterProductCatalog'; // IMPORT BARU
 
 interface PageDataState {
   title: string;
@@ -146,6 +147,8 @@ export const StaticPageDetail: React.FC = () => {
           const bData = block.data || {};
 
           switch (block.type) {
+            case 'product_catalog':
+              return <MasterProductCatalog key={block.id} badge={bData.badge} title={bData.title} subtitle={bData.subtitle} />;
             case 'hero':
               return (
                 <MasterHero

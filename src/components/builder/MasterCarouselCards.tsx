@@ -23,63 +23,61 @@ export const MasterCarouselCards: React.FC<MasterCarouselCardsProps> = ({
 
   const renderIcon = (type?: string) => {
     switch (type) {
-      case 'shield': return <Shield size={16} className="text-slate-900" />;
-      case 'cpu': return <Cpu size={16} className="text-slate-900" />;
-      case 'compass': return <Compass size={16} className="text-slate-900" />;
-      default: return <Zap size={16} className="text-slate-900" />;
+      case 'shield': return <Shield size={16} />;
+      case 'cpu': return <Cpu size={16} />;
+      case 'compass': return <Compass size={16} />;
+      default: return <Zap size={16} />;
     }
   };
 
   return (
-    <section className="py-20 bg-white border-b border-slate-100 font-sans select-none overflow-hidden w-full">
-      <div className="max-w-7xl mx-auto px-6 space-y-8">
+    <section className="py-24 bg-white border-b border-blue-50 font-sans select-none overflow-hidden w-full">
+      <div className="max-w-7xl mx-auto px-6 space-y-12">
         
-        {/* Header Seksi */}
-        <div className="space-y-1">
-          <span className="text-[10px] font-bold text-slate-400 block tracking-tight">
+        {/* Header Seksi (Rata Tengah) */}
+        <div className="flex flex-col items-center text-center space-y-3 max-w-2xl mx-auto">
+          <span className="text-[10px] font-black text-cyan-600 bg-cyan-50 px-3 py-1 rounded-full uppercase tracking-widest">
             {sectionLabel || 'Sektor Strategis'}
           </span>
-          <h2 className="text-2xl sm:text-3xl font-normal text-slate-900 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-black text-blue-950 tracking-tight">
             {sectionTitle || 'Sektor-sektor utama yang menopang rencana kami'}
           </h2>
         </div>
 
         {/* Wadah Korsel / Slider Horizontal */}
-        <div className="flex gap-4 overflow-x-auto pb-6 pt-2 no-scrollbar scroll-smooth snap-x snap-mandatory">
+        <div className="flex gap-6 overflow-x-auto pb-8 pt-4 px-4 no-scrollbar scroll-smooth snap-x snap-mandatory">
           {safeCards.map((card, idx) => (
             <div 
               key={idx}
-              className="relative w-[260px] sm:w-[280px] h-[340px] rounded-2xl overflow-hidden shadow-md flex-shrink-0 snap-start group border border-slate-100 bg-slate-900"
+              className="relative w-[280px] h-[380px] rounded-t-full rounded-b-3xl bg-slate-50 border border-slate-200 shadow-md flex-shrink-0 snap-center group flex flex-col items-center p-4 hover:border-blue-900 transition-colors"
             >
-              {/* Gambar Latar */}
-              <img 
-                src={card.imgUrl || 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=600&auto=format&fit=crop'} 
-                alt={card.title}
-                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
-              />
-              
-              {/* Gradien Penjelas Teks Bawah */}
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent" />
-
-              {/* Ikon Kiri Atas */}
-              <div className="absolute top-4 left-4 w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-md">
-                {renderIcon(card.iconType)}
+              {/* Gambar Melingkar di Atas */}
+              <div className="w-full aspect-square rounded-full overflow-hidden relative mb-6 shadow-inner">
+                <img 
+                  src={card.imgUrl || 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=600&auto=format&fit=crop'} 
+                  alt={card.title}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                />
+                <div className="absolute inset-0 bg-blue-900/10 group-hover:bg-transparent transition-colors" />
               </div>
 
-              {/* Tombol Panah Kanan (Muncul saat hover atau interaktif) */}
-              <button 
-                onClick={() => card.linkUrl && alert(`Menuju tautan: ${card.linkUrl}`)}
-                className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/90 hover:bg-white flex items-center justify-center shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer text-slate-900"
-                title="Eksplorasi Sektor"
-              >
-                <ArrowRight size={16} />
-              </button>
+              {/* Teks Judul */}
+              <h3 className="text-blue-950 font-black text-xl tracking-tight leading-tight text-center px-2">
+                {card.title || 'Sektor Operasi'}
+              </h3>
 
-              {/* Judul Kiri Bawah */}
-              <div className="absolute bottom-4 left-4 right-4">
-                <h3 className="text-white font-normal text-lg tracking-tight leading-tight">
-                  {card.title || 'Sektor Operasi'}
-                </h3>
+              {/* Ikon & Tombol Bulat di Bawah */}
+              <div className="mt-auto flex items-center justify-between w-full px-4 pt-4 border-t border-slate-200">
+                <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-900">
+                  {renderIcon(card.iconType)}
+                </div>
+                <button 
+                  onClick={() => card.linkUrl && alert(`Menuju tautan: ${card.linkUrl}`)}
+                  className="w-10 h-10 rounded-full bg-blue-950 hover:bg-cyan-500 flex items-center justify-center text-white transition-colors cursor-pointer"
+                  title="Eksplorasi Sektor"
+                >
+                  <ArrowRight size={16} />
+                </button>
               </div>
             </div>
           ))}

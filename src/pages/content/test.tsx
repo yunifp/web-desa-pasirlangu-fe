@@ -43,10 +43,9 @@ import { MasterGovernanceStructure } from '../../components/builder/MasterGovern
 import { MasterCertificationsAwards } from '../../components/builder/MasterCertificationsAwards';
 import { MasterProductCatalog } from '../../components/builder/MasterProductCatalog'; // IMPORT BARU
 
-
 interface BlockItem {
   id: string;
-  type: LibraryTool['type'] | 'post_grid' | 'contact_form' | 'hero_banner' | 'about_section' | 'purpose_section' | 'core_mandate' | 'strategic_sectors' | 'leader_quote' | 'newsroom_section' | 'esg_impact' | 'global_supply_chain' | 'career_apprenticeship' | 'investor_relations' | 'profile_hero' | 'mandate_history' | 'core_values_grid' | 'leadership_team' | 'governance_structure' | 'certifications_awards';
+  type: LibraryTool['type'];
   data: any;
 }
 
@@ -427,11 +426,10 @@ export const PageFormPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans pb-32 select-none relative">
-      <MediaPickerModal
-        isOpen={isMediaModalOpen}
-        onClose={() => { setIsMediaModalOpen(false); setActiveMediaTarget(null); }}
-        // 👇 PERBAIKAN TS2322: Menambahkan parameter type 'DOCUMENT' pada fungsi onSelect 👇
-        onSelect={(fileUrl: string, _type: 'IMAGE' | 'VIDEO' | 'DOCUMENT') => handleMediaSelected(fileUrl)}
+      <MediaPickerModal 
+        isOpen={isMediaModalOpen} 
+        onClose={() => { setIsMediaModalOpen(false); setActiveMediaTarget(null); }} 
+        onSelect={(fileUrl: string, _type: 'IMAGE' | 'VIDEO' | 'DOCUMENT') => handleMediaSelected(fileUrl)} 
       />
       <header className="sticky top-0 z-40 bg-white border-b border-slate-200 shadow-xs">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -461,10 +459,10 @@ export const PageFormPage: React.FC = () => {
               </div>
               <div className="p-6 bg-white rounded-3xl border border-slate-200 shadow-sm space-y-4">
                 <div className="space-y-1"><h2 className="text-xs font-black text-[#0B4028] uppercase tracking-widest">Pustaka Komponen</h2><p className="text-[11px] text-slate-500 font-medium">Klik miniatur untuk menambah seksi baru.</p></div>
-                <div className="grid grid-cols-1 gap-2.5 pt-1">
+                <div className="grid grid-cols-1 gap-2.5 pt-1 h-96 overflow-y-auto pr-2">
                   {LIBRARY_TOOLS.map((tool, idx) => {
                     const IconComp = tool.icon;
-                    const isDark = tool.color.includes('bg-slate-900');
+                    const isDark = tool.color.includes('bg-slate-900') || tool.color.includes('bg-[#0B4028]');
                     return (
                       <button key={idx} onClick={() => addBlock(tool.type)} className={`w-full text-left p-3.5 rounded-2xl border transition-all duration-150 active:scale-95 shadow-2xs flex flex-col justify-between relative overflow-hidden group cursor-pointer ${tool.color}`}>
                         <div className={`absolute left-0 inset-y-0 w-1.5 ${tool.accent}`} />
@@ -488,6 +486,8 @@ export const PageFormPage: React.FC = () => {
                       <div key={block.id} className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden relative">
                         <div className="bg-slate-50 border-b border-slate-200 px-5 py-3 flex items-center justify-between"><div className="flex items-center gap-2"><span className="w-5 h-5 rounded bg-[#0B4028] text-[#C5A059] flex items-center justify-center text-[10px] font-black">{index + 1}</span><span className="text-xs font-black text-slate-900 uppercase">Blok: {block.type}</span></div><div className="flex items-center gap-1"><button onClick={() => moveBlock(index, 'up')} disabled={index === 0} className="p-1 hover:bg-white rounded text-slate-400 disabled:opacity-30 cursor-pointer"><ArrowUp size={12} /></button><button onClick={() => moveBlock(index, 'down')} disabled={index === blocks.length - 1} className="p-1 hover:bg-white rounded text-slate-400 disabled:opacity-30 cursor-pointer"><ArrowDown size={12} /></button><span className="w-px h-3 bg-slate-200 mx-1" /><button onClick={() => removeBlock(block.id)} className="p-1 hover:bg-red-50 rounded text-slate-400 hover:text-red-600 cursor-pointer"><Trash2 size={12} /></button></div></div>
                         <div className="p-5 space-y-4">
+                          
+                          {/* INPUT PRODUK KATALOG */}
                           {block.type === 'product_catalog' && (
                             <div className="grid grid-cols-2 gap-3">
                               <div className="col-span-2 space-y-1">
@@ -507,6 +507,7 @@ export const PageFormPage: React.FC = () => {
                               </div>
                             </div>
                           )}
+
                           {block.type === 'hero' && (
                             <div className="grid grid-cols-2 gap-3">
                               <div className="col-span-2 space-y-1"><label className="text-[10px] font-bold text-slate-400 block">Judul Utama</label><input type="text" value={bData.title || ''} onChange={e => updateBlockData(block.id, { ...bData, title: e.target.value })} placeholder="Judul Utama" className="w-full text-xs font-bold border border-slate-200 rounded-lg p-2 bg-white" /></div>
@@ -628,7 +629,6 @@ export const PageFormPage: React.FC = () => {
                               </div>
                             </div>
                           )}
-
                           {block.type === 'post_grid' && (
                             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                               <div className="col-span-1 sm:col-span-3 space-y-1">
@@ -648,7 +648,6 @@ export const PageFormPage: React.FC = () => {
                               </div>
                             </div>
                           )}
-
                           {block.type === 'hero_banner' && (
                             <div className="space-y-3">
                               <div className="flex justify-between items-center bg-slate-50 p-2 rounded-lg border border-slate-200">
@@ -701,7 +700,6 @@ export const PageFormPage: React.FC = () => {
                               </div>
                             </div>
                           )}
-
                           {block.type === 'about_section' && (
                             <div className="space-y-3">
                               <div className="grid grid-cols-2 gap-2">
@@ -742,7 +740,6 @@ export const PageFormPage: React.FC = () => {
                               </div>
                             </div>
                           )}
-
                           {block.type === 'purpose_section' && (
                             <div className="space-y-3">
                               <div className="grid grid-cols-2 gap-2 bg-slate-50 p-2 rounded-lg border border-slate-200">
@@ -777,7 +774,6 @@ export const PageFormPage: React.FC = () => {
                               </div>
                             </div>
                           )}
-
                           {block.type === 'core_mandate' && (
                             <div className="space-y-3">
                               <div className="grid grid-cols-2 gap-2 bg-slate-50 p-2 rounded-lg border border-slate-200">
@@ -892,7 +888,6 @@ export const PageFormPage: React.FC = () => {
                               </div>
                             </div>
                           )}
-
                           {block.type === 'newsroom_section' && (
                             <div className="space-y-3">
                               <div className="grid grid-cols-2 gap-2">
@@ -974,7 +969,6 @@ export const PageFormPage: React.FC = () => {
                               </div>
                             </div>
                           )}
-
                           {block.type === 'global_supply_chain' && (
                             <div className="space-y-3">
                               <div className="grid grid-cols-2 gap-2">
@@ -1007,7 +1001,6 @@ export const PageFormPage: React.FC = () => {
                               </div>
                             </div>
                           )}
-
                           {block.type === 'career_apprenticeship' && (
                             <div className="grid grid-cols-2 gap-3 bg-slate-50 p-3 rounded-lg border border-slate-200">
                               <div className="space-y-1">
@@ -1032,7 +1025,6 @@ export const PageFormPage: React.FC = () => {
                               </div>
                             </div>
                           )}
-
                           {block.type === 'investor_relations' && (
                             <div className="space-y-3">
                               <div className="grid grid-cols-2 gap-2 bg-slate-50 p-2 rounded-lg border border-slate-200">
@@ -1060,7 +1052,6 @@ export const PageFormPage: React.FC = () => {
                               </div>
                             </div>
                           )}
-
                           {block.type === 'profile_hero' && (
                             <div className="space-y-3">
                               <div className="grid grid-cols-2 gap-2 bg-slate-50 p-2 rounded-lg border border-slate-200">
@@ -1071,7 +1062,6 @@ export const PageFormPage: React.FC = () => {
                               </div>
                             </div>
                           )}
-
                           {block.type === 'mandate_history' && (
                             <div className="space-y-3">
                               <div className="space-y-1"><label className="text-[9px] font-bold text-slate-400 block">Headline (Mendukung HTML)</label><textarea rows={2} value={bData.titleHtml || ''} onChange={e => updateBlockData(block.id, { ...bData, titleHtml: e.target.value })} className="w-full text-xs font-mono border border-slate-200 rounded p-1.5 bg-white" /></div>
@@ -1086,7 +1076,6 @@ export const PageFormPage: React.FC = () => {
                               </div>
                             </div>
                           )}
-
                           {block.type === 'core_values_grid' && (
                             <div className="space-y-4">
                               {/* Visi */}
@@ -1099,7 +1088,6 @@ export const PageFormPage: React.FC = () => {
                                   <input type="text" value={bData.visionTarget || ''} onChange={e => updateBlockData(block.id, { ...bData, visionTarget: e.target.value })} placeholder="Target Realisasi" className="col-span-2 text-xs border border-slate-200 rounded p-1.5 bg-white" />
                                 </div>
                               </div>
-
                               {/* Misi */}
                               <div className="bg-slate-50 p-2 rounded-lg border border-slate-200 space-y-2">
                                 <div className="flex justify-between items-center">
@@ -1117,7 +1105,6 @@ export const PageFormPage: React.FC = () => {
                                   </div>
                                 ))}
                               </div>
-
                               {/* Core Values */}
                               <div className="bg-slate-50 p-2 rounded-lg border border-slate-200 space-y-2">
                                 <div className="flex justify-between items-center">
@@ -1143,7 +1130,6 @@ export const PageFormPage: React.FC = () => {
                               </div>
                             </div>
                           )}
-
                           {block.type === 'leadership_team' && (
                             <div className="space-y-4">
                               <div className="grid grid-cols-3 gap-2 bg-slate-50 p-2 rounded-lg border border-slate-200">
@@ -1151,7 +1137,6 @@ export const PageFormPage: React.FC = () => {
                                 <div className="space-y-1"><label className="text-[9px] font-bold text-slate-400 block">Judul</label><input type="text" value={bData.title || ''} onChange={e => updateBlockData(block.id, { ...bData, title: e.target.value })} className="w-full text-xs font-bold border border-slate-200 rounded p-1.5 bg-white" /></div>
                                 <div className="space-y-1"><label className="text-[9px] font-bold text-slate-400 block">Periode</label><input type="text" value={bData.period || ''} onChange={e => updateBlockData(block.id, { ...bData, period: e.target.value })} className="w-full text-xs border border-slate-200 rounded p-1.5 bg-white" /></div>
                               </div>
-
                               {/* Komisaris */}
                               <div className="bg-slate-50 p-2 rounded-lg border border-slate-200 space-y-2">
                                 <div className="flex justify-between items-center">
@@ -1174,7 +1159,6 @@ export const PageFormPage: React.FC = () => {
                                   </div>
                                 ))}
                               </div>
-
                               {/* Direksi */}
                               <div className="bg-slate-50 p-2 rounded-lg border border-slate-200 space-y-2">
                                 <div className="flex justify-between items-center">
@@ -1199,7 +1183,6 @@ export const PageFormPage: React.FC = () => {
                               </div>
                             </div>
                           )}
-
                           {block.type === 'governance_structure' && (
                             <div className="space-y-3">
                               <div className="grid grid-cols-3 gap-2 bg-slate-50 p-2 rounded-lg border border-slate-200">
@@ -1232,7 +1215,6 @@ export const PageFormPage: React.FC = () => {
                               </div>
                             </div>
                           )}
-
                           {block.type === 'certifications_awards' && (
                             <div className="space-y-3">
                               <div className="grid grid-cols-2 gap-2 bg-slate-50 p-2 rounded-lg border border-slate-200">
@@ -1292,7 +1274,6 @@ export const PageFormPage: React.FC = () => {
                       return <MasterHeroBannerPage key={block.id} slides={sanitizedSlides} quickLinks={bData.quickLinks || []} />;
                     }
                     case 'about_section': return <MasterAboutSection key={block.id} badge={bData.badge} headlineHtml={bData.headlineHtml} description={bData.description} linkText={bData.linkText} linkUrl={bData.linkUrl} imgUrl={sanitizeUrl(bData.imgUrl)} imgCaption={bData.imgCaption} />;
-                    default: return null;
                     case 'purpose_section': {
                       const parsedItems = (Array.isArray(bData.items) ? bData.items : []).map((i: any) => i.text);
                       return <MasterPurposeSection key={block.id} badge={bData.badge} description={bData.description} bgImageUrl={sanitizeUrl(bData.bgImageUrl)} items={parsedItems} />;
@@ -1332,6 +1313,7 @@ export const PageFormPage: React.FC = () => {
                       return <MasterGovernanceStructure key={block.id} {...bData} />;
                     case 'certifications_awards':
                       return <MasterCertificationsAwards key={block.id} {...bData} />;
+                    default: return null;
                   }
                 })
               )}

@@ -8,89 +8,158 @@ export interface MasterPurposeSectionProps {
 }
 
 export const MasterPurposeSection: React.FC<MasterPurposeSectionProps> = ({
-  badge = "Tujuan Kami",
+  badge = 'Tujuan Kami',
   items = [
-    "Optimasi Sumber Daya",
-    "Kemakmuran Indonesia",
-    "Kehidupan Berkelanjutan"
+    'Optimasi Sumber Daya',
+    'Kemakmuran Indonesia',
+    'Kehidupan Berkelanjutan',
   ],
-  description = "Mengamankan rantai pasok cadangan kritis nusantara guna menopang kemakmuran rakyat serta kedaulatan industri teknologi tinggi di ranah persaingan global.",
-  bgImageUrl = "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1000&auto=format&fit=crop"
+  description = 'Mengamankan rantai pasok cadangan kritis nusantara guna menopang kemakmuran rakyat serta kedaulatan industri teknologi tinggi di tengah persaingan global.',
+  bgImageUrl = 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1400&auto=format&fit=crop',
 }) => {
-  // Menduplikasi array untuk menciptakan ilusi putaran mulus tanpa ujung
   const duplicatedItems = [...items, ...items, ...items];
 
   return (
-    <section className="relative w-full h-[65vh] min-h-[500px] max-h-[700px] bg-black overflow-hidden font-sans flex items-center select-none">
-      
-      {/* INJEKSI GAYA ANIMASI MARQUEE VERTIKAL SECARA LOKAL */}
+    <section className="relative isolate overflow-hidden bg-[#020817] border-y border-white/10 py-24 sm:py-32">
+      {/* BACKGROUND */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-950 via-slate-950 to-cyan-950" />
+
+        {/* Glow */}
+        <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] rounded-full bg-cyan-500/20 blur-3xl" />
+        <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] rounded-full bg-blue-600/20 blur-3xl" />
+
+        {/* Grid */}
+        <div
+          className="absolute inset-0 opacity-[0.08]"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)
+            `,
+            backgroundSize: '60px 60px',
+          }}
+        />
+
+        {/* Globe Image */}
+        <div className="absolute left-[-15%] top-1/2 -translate-y-1/2 w-[650px] h-[650px] opacity-40 hidden lg:block">
+          <div className="relative w-full h-full">
+            <div className="absolute inset-0 rounded-full border border-cyan-400/30 backdrop-blur-3xl bg-white/5 shadow-[0_0_120px_rgba(34,211,238,0.15)]" />
+
+            <img
+              src={bgImageUrl}
+              alt="Globe"
+              className="absolute inset-0 w-full h-full object-cover rounded-full mix-blend-screen grayscale contrast-125 brightness-90"
+            />
+
+            {/* Orbit */}
+            <div className="absolute inset-[-40px] rounded-full border border-dashed border-cyan-400/20 animate-[spin_30s_linear_infinite]" />
+            <div className="absolute inset-[50px] rounded-full border border-cyan-300/10 animate-[spin_20s_linear_infinite_reverse]" />
+          </div>
+        </div>
+      </div>
+
+      {/* CUSTOM STYLE */}
       <style>{`
-        @keyframes scrollMarqueeVertical {
-          0% { transform: translateY(0%); }
-          100% { transform: translateY(-50%); }
+        @keyframes marqueeVertical {
+          0% {
+            transform: translateY(0%);
+          }
+          100% {
+            transform: translateY(-50%);
+          }
         }
+
         .animate-marquee-v {
-          animation: scrollMarqueeVertical 40s linear infinite;
+          animation: marqueeVertical 32s linear infinite;
         }
-        .mask-vertical-fade {
-          -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 25%, black 75%, transparent 100%);
-          mask-image: linear-gradient(to bottom, transparent 0%, black 25%, black 75%, transparent 100%);
+
+        .mask-fade-vertical {
+          -webkit-mask-image: linear-gradient(
+            to bottom,
+            transparent,
+            white 15%,
+            white 85%,
+            transparent
+          );
+          mask-image: linear-gradient(
+            to bottom,
+            transparent,
+            white 15%,
+            white 85%,
+            transparent
+          );
+        }
+
+        .text-stroke {
+  color: #0f172a; /* slate-900 / biru tua */
+  -webkit-text-stroke: 1px rgba(255,255,255,0.08);
+  transition: all 0.4s ease;
+}
+
+.text-stroke:hover {
+  color: #67e8f9;
+  -webkit-text-stroke: 1px transparent;
+  text-shadow:
+    0 0 10px rgba(103,232,249,0.5),
+    0 0 30px rgba(103,232,249,0.35);
+}
+
+        .text-stroke:hover {
+          color: #67e8f9;
+          -webkit-text-stroke: 1px transparent;
+          text-shadow:
+            0 0 10px rgba(103,232,249,0.5),
+            0 0 30px rgba(103,232,249,0.35);
         }
       `}</style>
 
-      {/* --- PENAMPANG KANAN: GRAFIS PETA GLOBE TITIK-TITIK --- */}
-      <div className="absolute right-[-15%] sm:right-[-5%] top-1/2 -translate-y-1/2 w-[600px] sm:w-[800px] h-[600px] sm:h-[800px] pointer-events-none opacity-95 flex items-center justify-center">
-        {/* Lapis Dasar Lingkaran Globe */}
-        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-white/5 to-white/10 border border-white/15" />
-        <div className="absolute inset-4 rounded-full border border-white/10 border-dashed" />
-        
-        {/* Gambar Peta Titik Resolusi Tinggi */}
-        {bgImageUrl && (
-          <img 
-            src={bgImageUrl} 
-            alt="Globe Map Matrix"
-            className="w-full h-full object-cover rounded-full mix-blend-lighten opacity-60 contrast-150" 
-          />
-        )}
-        
-        {/* Lapisan Bayangan Gelap untuk Kedalaman 3D */}
-        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-black via-black/40 to-transparent" />
-        
-        {/* Simulasi Pola Titik Peta Kritis di Permukaan Globe */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-60">
-          <div className="w-3/4 h-3/4 rounded-full border border-[#C5A059]/40 border-dotted transform -rotate-45" />
-          <div className="absolute w-1/2 h-1/2 rounded-full border border-white/30 border-dotted transform rotate-12" />
-        </div>
-      </div>
+      {/* CONTENT */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10">
+        <div className="flex justify-end">
+          <div className="w-full max-w-3xl text-right">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyan-400/20 bg-cyan-400/10 backdrop-blur-md mb-6">
+              <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+              <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-cyan-300">
+                {badge}
+              </span>
+            </div>
 
-      {/* --- PENAMPANG KIRI: KONTEN TEKS TUJUAN --- */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
-        <div className="max-w-xl sm:max-w-2xl space-y-4">
-          
-          <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest block">
-            {badge}
-          </span>
+            {/* Description */}
+            <p className="text-sm sm:text-base leading-relaxed text-slate-300 max-w-xl ml-auto border-r-2 border-cyan-400/30 pr-5 mb-12">
+              {description}
+            </p>
 
-          {/* Wadah Teks Bergulir */}
-          <div className="h-[220px] sm:h-[280px] overflow-hidden relative mask-vertical-fade">
-            <div className="animate-marquee-v flex flex-col pt-10">
-              {duplicatedItems.map((text, idx) => (
-                <div key={idx} className="py-2.5 sm:py-3.5 transition-colors">
-                  <h2 className="text-3xl sm:text-5xl lg:text-5xl font-black text-white tracking-tight leading-none hover:text-[#C5A059] transition-colors cursor-default">
-                    {text}
-                  </h2>
-                </div>
-              ))}
+            {/* MARQUEE */}
+            <div className="relative h-[260px] sm:h-[340px] overflow-hidden mask-fade-vertical">
+              {/* Blur top */}
+              <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-[#020817] to-transparent z-10 pointer-events-none" />
+
+              {/* Blur bottom */}
+              <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#020817] to-transparent z-10 pointer-events-none" />
+
+              <div className="animate-marquee-v flex flex-col pt-10">
+                {duplicatedItems.map((text, idx) => (
+                  <div
+                    key={idx}
+                    className="group py-2 sm:py-3 transition-all duration-500"
+                  >
+                    <h2 className="text-stroke text-5xl sm:text-7xl lg:text-8xl font-black tracking-[-0.05em] leading-none uppercase cursor-default">
+                      {text}
+                    </h2>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Bottom line */}
+            <div className="mt-10 flex justify-end">
+              <div className="w-40 h-[1px] bg-gradient-to-l from-cyan-400 to-transparent" />
             </div>
           </div>
-
-          <p className="text-xs sm:text-sm text-slate-400 font-medium leading-relaxed max-w-lg pt-4 border-t border-white/10">
-            {description}
-          </p>
-
         </div>
       </div>
-
     </section>
   );
 };

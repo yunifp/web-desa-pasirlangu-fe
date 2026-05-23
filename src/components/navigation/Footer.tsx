@@ -29,7 +29,6 @@ export const Footer: React.FC = () => {
       const data = res.data?.data || {};
       setOptions(data);
 
-      // Ekstrak dan parse JSON Footer Columns secara aman
       if (data.footer_columns) {
         try {
           const parsed = JSON.parse(data.footer_columns);
@@ -47,71 +46,60 @@ export const Footer: React.FC = () => {
   const phone = options.site_phone || '+62 812-3456-7890';
   const address = options.site_address || 'Purbalingga, Jawa Tengah, Indonesia';
   
-  // Prioritaskan logo khusus footer jika ada, alternatif ke logo utama
   const targetLogoUrl = options.site_footer_logo || options.site_logo;
 
   return (
-    <footer className="bg-slate-950 text-white pt-20 pb-12 border-t border-slate-900 font-sans">
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-12 pb-16 border-b border-slate-900">
+    <footer className="bg-[#0A1128] text-white pt-24 pb-10 border-t border-blue-900 font-sans">
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-12 pb-16 border-b border-blue-900/50">
         
-        {/* --- BAGIAN KIRI: LOGO & DESKRIPSI (SPAN 4) --- */}
-        <div className="md:col-span-4 space-y-5">
-          <Link to="/" className="flex items-center gap-3 group w-fit">
-            {targetLogoUrl ? (
-              <img 
-                src={getBackendImageUrl(targetLogoUrl)} 
-                alt={siteTitle} 
-                className="h-10 w-auto object-contain max-w-[180px]" 
-              />
-            ) : (
-              <>
-                <div className="p-2 bg-blue-600 text-white rounded-lg">
-                  <Globe size={18} />
+        {/* --- BAGIAN KIRI: KONTAK & LOKASI (Tadinya Kanan) --- */}
+        <div className="md:col-span-3 space-y-4">
+          <span className="text-[10px] font-black text-cyan-500 uppercase tracking-widest block mb-2">
+            Pusat Komunikasi
+          </span>
+          <div className="space-y-3 text-sm text-blue-100 font-medium">
+            {address && (
+              <p className="flex items-start gap-3 leading-relaxed">
+                <div className="p-2 bg-blue-900 rounded-full flex-shrink-0 text-cyan-400">
+                  <MapPin size={16} />
                 </div>
-                <span className="font-black tracking-tight text-lg uppercase">{siteTitle}</span>
-              </>
+                <span className="mt-1">{address}</span>
+              </p>
             )}
-          </Link>
-          
-          <p className="text-slate-400 text-sm leading-relaxed font-medium">
-            {footerDesc}
-          </p>
-
-          {/* Ikon Sosial Media Dinamis */}
-          <div className="flex flex-wrap items-center gap-2 pt-1">
-            {options.social_facebook && (
-              <a href={options.social_facebook} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-900 hover:bg-blue-600 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition-colors">
-                <Share2 size={13}/> Facebook
-              </a>
+            {phone && (
+              <p className="flex items-center gap-3">
+                <div className="p-2 bg-blue-900 rounded-full flex-shrink-0 text-cyan-400">
+                  <Phone size={14} />
+                </div>
+                <span className="font-mono">{phone}</span>
+              </p>
             )}
-            {options.social_instagram && (
-              <a href={options.social_instagram} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-900 hover:bg-pink-600 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition-colors">
-                <Link2 size={13}/> Instagram
-              </a>
-            )}
-            {options.social_linkedin && (
-              <a href={options.social_linkedin} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-900 hover:bg-blue-500 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition-colors">
-                <Share2 size={13}/> LinkedIn
-              </a>
+            {email && (
+              <p className="flex items-center gap-3">
+                <div className="p-2 bg-blue-900 rounded-full flex-shrink-0 text-cyan-400">
+                  <Mail size={14} />
+                </div>
+                <span className="text-blue-300 hover:text-cyan-400 font-bold truncate transition-colors cursor-pointer">{email}</span>
+              </p>
             )}
           </div>
         </div>
 
-        {/* --- BAGIAN TENGAH: KOLOM DINAMIS BUILDER (SPAN 5) --- */}
-        <div className="md:col-span-5 grid grid-cols-2 gap-8">
+        {/* --- BAGIAN TENGAH: KOLOM DINAMIS BUILDER --- */}
+        <div className="md:col-span-5 grid grid-cols-2 gap-8 md:pl-10">
           {footerColumns.length > 0 ? (
             footerColumns.map((col, idx) => (
               <div key={idx}>
-                <span className="text-xs font-bold text-slate-500 uppercase tracking-widest block mb-4">
+                <span className="text-[10px] font-black text-cyan-500 uppercase tracking-widest block mb-5 relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-8 after:h-0.5 after:bg-blue-800">
                   {col.title}
                 </span>
-                <ul className="space-y-2.5 text-sm font-semibold text-slate-300">
+                <ul className="space-y-3 text-sm font-semibold text-blue-200">
                   {col.links.map((link, lIdx) => {
                     const isExternal = link.url.startsWith('http');
                     if (isExternal) {
                       return (
                         <li key={lIdx}>
-                          <a href={link.url} target="_blank" rel="noreferrer" className="hover:text-blue-400 transition-colors block truncate">
+                          <a href={link.url} target="_blank" rel="noreferrer" className="hover:text-cyan-400 transition-colors block truncate">
                             {link.label} ↗
                           </a>
                         </li>
@@ -119,7 +107,7 @@ export const Footer: React.FC = () => {
                     }
                     return (
                       <li key={lIdx}>
-                        <Link to={link.url} className="hover:text-blue-400 transition-colors block truncate">
+                        <Link to={link.url} className="hover:text-cyan-400 transition-colors block truncate hover:translate-x-1 transform duration-200">
                           {link.label}
                         </Link>
                       </li>
@@ -129,54 +117,69 @@ export const Footer: React.FC = () => {
               </div>
             ))
           ) : (
-            /* Fallback Default Jika Builder Footer Kosong */
             <div>
-              <span className="text-xs font-bold text-slate-500 uppercase tracking-widest block mb-4">Akses Cepat</span>
-              <ul className="space-y-2.5 text-sm font-semibold text-slate-300">
-                <li><Link to="/" className="hover:text-blue-400 transition-colors">Beranda Utama</Link></li>
-                <li><Link to="/p/tentang-kami" className="hover:text-blue-400 transition-colors">Profil Perusahaan</Link></li>
-                <li><Link to="/p/layanan" className="hover:text-blue-400 transition-colors">Solusi & Layanan</Link></li>
+              <span className="text-[10px] font-black text-cyan-500 uppercase tracking-widest block mb-5 relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-8 after:h-0.5 after:bg-blue-800">Akses Cepat</span>
+              <ul className="space-y-3 text-sm font-semibold text-blue-200">
+                <li><Link to="/" className="hover:text-cyan-400 transition-colors block hover:translate-x-1 transform duration-200">Beranda Utama</Link></li>
+                <li><Link to="/p/tentang-kami" className="hover:text-cyan-400 transition-colors block hover:translate-x-1 transform duration-200">Profil Perusahaan</Link></li>
+                <li><Link to="/p/layanan" className="hover:text-cyan-400 transition-colors block hover:translate-x-1 transform duration-200">Solusi & Layanan</Link></li>
               </ul>
             </div>
           )}
         </div>
 
-        {/* --- BAGIAN KANAN: KONTAK & LOKASI (SPAN 3) --- */}
-        <div className="md:col-span-3 space-y-3">
-          <span className="text-xs font-bold text-slate-500 uppercase tracking-widest block mb-1">
-            Pusat Komunikasi
-          </span>
-          <div className="space-y-2 text-sm text-slate-400 font-medium">
-            {address && (
-              <p className="flex items-start gap-2 leading-relaxed">
-                <MapPin size={16} className="text-blue-500 flex-shrink-0 mt-0.5" />
-                <span>{address}</span>
-              </p>
+        {/* --- BAGIAN KANAN: LOGO & DESKRIPSI (Tadinya Kiri, Rata Kanan) --- */}
+        <div className="md:col-span-4 space-y-6 flex flex-col md:items-end text-left md:text-right">
+          <Link to="/" className="flex items-center gap-3 group w-fit flex-row-reverse md:flex-row">
+            {targetLogoUrl ? (
+              <img 
+                src={getBackendImageUrl(targetLogoUrl)} 
+                alt={siteTitle} 
+                className="h-10 w-auto object-contain max-w-[180px]" 
+              />
+            ) : (
+              <>
+                <span className="font-black tracking-tight text-xl uppercase text-white">{siteTitle}</span>
+                <div className="p-2.5 bg-blue-600 text-white rounded-full">
+                  <Globe size={20} />
+                </div>
+              </>
             )}
-            {phone && (
-              <p className="flex items-center gap-2">
-                <Phone size={14} className="text-blue-500 flex-shrink-0" />
-                <span className="font-mono">{phone}</span>
-              </p>
+          </Link>
+          
+          <p className="text-blue-200/80 text-sm leading-relaxed font-medium">
+            {footerDesc}
+          </p>
+
+          {/* Ikon Sosial Media (Lingkaran) */}
+          <div className="flex flex-wrap items-center md:justify-end gap-3 pt-2">
+            {options.social_facebook && (
+              <a href={options.social_facebook} target="_blank" rel="noreferrer" title="Facebook" className="p-2.5 bg-blue-900/50 border border-blue-800 hover:bg-blue-600 hover:border-blue-500 rounded-full text-blue-300 hover:text-white transition-all transform hover:-translate-y-1">
+                <Share2 size={16}/>
+              </a>
             )}
-            {email && (
-              <p className="flex items-center gap-2">
-                <Mail size={14} className="text-blue-500 flex-shrink-0" />
-                <span className="text-blue-400 font-bold truncate">{email}</span>
-              </p>
+            {options.social_instagram && (
+              <a href={options.social_instagram} target="_blank" rel="noreferrer" title="Instagram" className="p-2.5 bg-blue-900/50 border border-blue-800 hover:bg-pink-600 hover:border-pink-500 rounded-full text-blue-300 hover:text-white transition-all transform hover:-translate-y-1">
+                <Link2 size={16}/>
+              </a>
+            )}
+            {options.social_linkedin && (
+              <a href={options.social_linkedin} target="_blank" rel="noreferrer" title="LinkedIn" className="p-2.5 bg-blue-900/50 border border-blue-800 hover:bg-blue-500 hover:border-blue-400 rounded-full text-blue-300 hover:text-white transition-all transform hover:-translate-y-1">
+                <Share2 size={16}/>
+              </a>
             )}
           </div>
         </div>
 
       </div>
 
-      {/* --- BAR ATRIBUSI BAWAH --- */}
-      <div className="max-w-7xl mx-auto px-6 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-semibold text-slate-600">
-        <p>&copy; {new Date().getFullYear()} {siteTitle}. Hak Cipta Dilindungi.</p>
+      {/* --- BAR ATRIBUSI BAWAH (Diubah Susunannya) --- */}
+      <div className="max-w-7xl mx-auto px-6 pt-8 flex flex-col md:flex-row-reverse items-center justify-between gap-4 text-[11px] font-bold text-blue-400/60 uppercase tracking-widest">
         <div className="flex gap-6">
-          <Link to="/p/syarat-ketentuan" className="hover:text-slate-500 transition-colors">Syarat & Ketentuan</Link>
-          <Link to="/p/kebijakan-privasi" className="hover:text-slate-500 transition-colors">Kebijakan Privasi</Link>
+          <Link to="/p/syarat-ketentuan" className="hover:text-cyan-400 transition-colors">Syarat & Ketentuan</Link>
+          <Link to="/p/kebijakan-privasi" className="hover:text-cyan-400 transition-colors">Kebijakan Privasi</Link>
         </div>
+        <p className="normal-case tracking-normal">&copy; {new Date().getFullYear()} {siteTitle}. Hak Cipta Dilindungi.</p>
       </div>
     </footer>
   );

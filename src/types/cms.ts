@@ -114,3 +114,25 @@ export interface PageFormData {
   status: PostStatus;
   templateId?: string | null;
 }
+
+export interface Product {
+  id: string;
+  name: string;
+  slug: string;
+  description: string;
+  price: number;
+  stock: number;
+  image: string | null;
+  images?: string[];
+  button1Label: string | null;
+  button1Url: string | null;
+  button2Label: string | null;
+  button2Url: string | null;
+  status: 'DRAFT' | 'PUBLISHED' | 'ARCHIVED';
+  categoryId?: string | null;
+  authorId: string;
+  category?: { id: string; name: string };
+  author?: { id: string; name: string };
+  createdAt: string;
+  updatedAt: string;
+}

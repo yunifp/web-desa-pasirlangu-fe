@@ -27,10 +27,12 @@ import { NavbarBuilderPage } from './pages/appearance/NavbarBuilderPage';
 import { SettingPage } from './pages/appearance/SettingPage';
 import { MediaPage } from './pages/media/MediaPage';
 import { DashboardPage } from './pages/dashboard/DashboardPage';
+import { ProductPage } from './pages/content/ProductPage';
 
 // --- IMPORT MASTER HALAMAN HARDCODE KORPORAT BUMN PERMINAS ---
 import { CorporateStaticPage } from './pages/public/CorporateStaticPage';
 import { LandingEditorPage } from './pages/appearance/LandingEditorPage'; // Import komponen
+import { ProductDetailPage } from './pages/public/ProductDetailPage';
 
 // Halaman 404 Diselaraskan ke Tema Eksekutif PT Perminas
 const NotFoundPage = () => {
@@ -129,6 +131,7 @@ function App() {
           {/* Rute Khusus Pembaca Artikel & Arsip Kategori */}
           <Route path="/read/:slug" element={<ArticleDetailPage />} />
           <Route path="/kategori/:slug" element={<CategoryArchivePage />} />
+          <Route path="/produk/:slug" element={<ProductDetailPage />} />
 
           {/* ⚡ RUTE KHUSUS CMS BUILDER: Operasi Dinamis */}
           <Route path="/operasi/:slug" element={<StaticPageDetail />} />
@@ -187,6 +190,7 @@ function App() {
             <Route path="pages" element={<PageListPage />} />
             <Route path="pages/create" element={<PageFormPage />} />
             <Route path="pages/edit/:id" element={<PageFormPage />} />
+            <Route path="products" element={<ProductPage />} />
 
             <Route path="media" element={<MediaPage />} />
           </Route>

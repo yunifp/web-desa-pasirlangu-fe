@@ -21,53 +21,48 @@ export const MasterExtractionFlow: React.FC<MasterExtractionFlowProps> = ({
   steps
 }) => {
   return (
-    <section className="py-24 bg-slate-50 border-b border-slate-100 font-sans select-none overflow-hidden">
-      <div className="max-w-4xl mx-auto px-6 space-y-12">
+    <section className="py-24 bg-slate-50 font-sans select-none overflow-hidden">
+      <div className="max-w-4xl mx-auto px-6 space-y-16">
         
-        <div className="text-center space-y-2">
-          <span className="text-[10px] font-bold text-[#0B4028] uppercase tracking-widest block">
+        <div className="text-center space-y-6 flex flex-col items-center">
+          <span className="text-[11px] font-black text-cyan-600 uppercase tracking-widest block relative after:content-[''] after:absolute after:-bottom-2 after:left-1/2 after:-translate-x-1/2 after:w-12 after:h-1 after:bg-blue-900 after:rounded-full">
             {badge}
           </span>
-          <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-light text-slate-700 tracking-tight mt-6">
             {title}
           </h2>
-          <p className="text-xs text-slate-500 font-medium max-w-lg mx-auto">
+          <p className="text-sm text-slate-500 font-medium max-w-lg mx-auto leading-relaxed">
             {subtitle}
           </p>
         </div>
 
-        {/* Alur Proses Vertikal Dinamis */}
         <div className="space-y-4 relative">
           {steps.map((st, idx) => (
             <div key={idx} className="relative">
-              <div className="p-6 bg-white rounded-2xl border border-slate-200/80 shadow-2xs flex flex-col sm:flex-row items-start sm:items-center gap-6 group hover:border-[#0B4028] transition-colors">
+              <div className="p-8 bg-white rounded-[2rem] rounded-tr-none border-2 border-blue-50 shadow-md flex flex-col sm:flex-row items-start sm:items-center gap-6 group hover:border-blue-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                 
-                {/* Lencana Nomor Fase */}
-                <div className="w-12 h-12 rounded-xl bg-slate-100 group-hover:bg-[#0B4028] text-slate-700 group-hover:text-[#C5A059] font-black text-sm flex items-center justify-center flex-shrink-0 transition-colors border border-slate-200">
+                <div className="w-14 h-14 rounded-2xl bg-blue-50 group-hover:bg-blue-950 text-blue-900 group-hover:text-cyan-400 font-black text-base flex items-center justify-center flex-shrink-0 transition-colors shadow-sm">
                   {st.phase}
                 </div>
 
-                {/* Deskripsi Tahapan */}
-                <div className="space-y-1 flex-1">
-                  <h3 className="text-sm font-black text-slate-900 tracking-tight group-hover:text-[#0B4028] transition-colors">
+                <div className="space-y-2 flex-1 border-l-2 border-transparent sm:border-blue-50 sm:pl-6 group-hover:border-cyan-100 transition-colors">
+                  <h3 className="text-base font-black text-slate-800 tracking-tight group-hover:text-blue-950 transition-colors">
                     {st.title}
                   </h3>
-                  <p className="text-xs text-slate-600 font-medium leading-relaxed">
+                  <p className="text-sm text-slate-600 font-medium leading-relaxed">
                     {st.desc}
                   </p>
                 </div>
 
-                {/* Ikon Sudut Kanan */}
-                <div className="hidden sm:flex w-8 h-8 rounded-lg bg-slate-50 items-center justify-center text-slate-400 flex-shrink-0 border border-slate-100">
-                  <Layers size={14} />
+                <div className="hidden sm:flex w-10 h-10 rounded-xl bg-slate-50 items-center justify-center text-slate-400 flex-shrink-0 group-hover:text-cyan-500 group-hover:bg-cyan-50 transition-colors">
+                  <Layers size={18} />
                 </div>
 
               </div>
 
-              {/* Tanda Panah Penghubung */}
               {idx < steps.length - 1 && (
-                <div className="flex justify-center my-2">
-                  <ArrowDown size={16} className="text-slate-300 animate-bounce" />
+                <div className="flex justify-center my-4">
+                  <ArrowDown size={20} className="text-blue-200 animate-bounce" />
                 </div>
               )}
             </div>

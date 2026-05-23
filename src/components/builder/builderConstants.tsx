@@ -13,11 +13,12 @@ import {
   Award,
   Network,
   Users,
-  Target
+  Target,
+  ShoppingBag
 } from 'lucide-react';
 
 export interface LibraryTool {
-  type: 'hero' | 'elements' | 'flow' | 'workflows' | 'gallery' | 'dashboard' | 'cta' | 'faq' | 'slider_cards' | 'split_headline' | 'post_grid' |'contact_form'| 'hero_banner' | 'about_section' |'core_mandate'|'purpose_section' | 'strategic_sectors' | 'leader_quote' |'newsroom_section' |'esg_impact'| 'global_supply_chain' | 'career_apprenticeship' |'investor_relations' |'profile_hero' | 'mandate_history' | 'core_values_grid' | 'leadership_team' | 'governance_structure' | 'certifications_awards';
+  type: 'hero' | 'elements' | 'flow' | 'workflows' | 'gallery' | 'dashboard' | 'cta' | 'faq' | 'slider_cards' | 'split_headline' | 'post_grid' |'contact_form'| 'hero_banner' | 'about_section' |'core_mandate'|'purpose_section' | 'strategic_sectors' | 'leader_quote' |'newsroom_section' |'esg_impact'| 'global_supply_chain' | 'career_apprenticeship' |'investor_relations' |'profile_hero' | 'mandate_history' | 'core_values_grid' | 'leadership_team' | 'governance_structure' | 'certifications_awards' | 'product_catalog';
   name: string;
   desc: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -42,6 +43,24 @@ export const LIBRARY_TOOLS: LibraryTool[] = [
         <div className="w-1/2 h-1 bg-slate-500 rounded-xs" />
         <div className="pt-1">
           <div className="w-full h-0.5 bg-gradient-to-r from-[#0B4028] to-[#C5A059]" />
+        </div>
+      </div>
+    )
+  },
+  { 
+    type: 'product_catalog', 
+    name: 'Katalog Produk UMKM', 
+    desc: 'Grid produk interaktif dengan popup checkout WA/Shopee otomatis.', 
+    icon: ShoppingBag, 
+    color: 'border-[#0B4028] bg-white', 
+    accent: 'bg-[#C5A059]',
+    previewSketch: (
+      <div className="space-y-1 my-2 bg-slate-50 p-1.5 rounded-lg border border-slate-200">
+        <div className="w-1/3 h-1.5 bg-[#C5A059] rounded-xs mx-auto" />
+        <div className="grid grid-cols-3 gap-1 pt-1">
+          <div className="h-6 bg-slate-300 rounded-xs border border-slate-400" />
+          <div className="h-6 bg-slate-300 rounded-xs border border-slate-400" />
+          <div className="h-6 bg-slate-300 rounded-xs border border-slate-400" />
         </div>
       </div>
     )
@@ -238,7 +257,7 @@ export const LIBRARY_TOOLS: LibraryTool[] = [
   { 
     type: 'contact_form', 
     name: 'Formulir Kontak WA', 
-    desc: 'Formulir input nama & pesan yang mengarahkan pengguna langsung ke WhatsApp Anda.', 
+    desc: 'Formulir input nama & pesan yang mengarahkan pengguna langsung ke WhatsApp.', 
     icon: MessageSquare, 
     color: 'border-green-600 bg-white', 
     accent: 'bg-[#0B4028]',
