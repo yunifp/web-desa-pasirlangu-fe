@@ -8,8 +8,7 @@ export interface MasterLeadershipTeamProps {
 }
 
 export const MasterLeadershipTeam: React.FC<MasterLeadershipTeamProps> = ({
-  badge, title, period, commissaries = [], directors = []
-}) => {
+  badge, title, period, commissaries = []}) => {
   return (
     <section className="py-24 bg-white font-sans select-none overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 space-y-16">
@@ -29,9 +28,9 @@ export const MasterLeadershipTeam: React.FC<MasterLeadershipTeamProps> = ({
         </div>
 
         <div className="space-y-8">
-          <h3 className="text-sm font-black text-blue-950 uppercase tracking-widest border-l-4 border-cyan-500 pl-4 bg-slate-50 py-2 w-max pr-6 rounded-r-xl">
-            Dewan Komisaris
-          </h3>
+          {/* <h3 className="text-sm font-black text-blue-950 uppercase tracking-widest border-l-4 border-cyan-500 pl-4 bg-slate-50 py-2 w-max pr-6 rounded-r-xl">
+            Kepala Desa
+          </h3> */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {commissaries.map((person, idx) => (
               <div key={idx} className="space-y-5 group">
@@ -53,7 +52,7 @@ export const MasterLeadershipTeam: React.FC<MasterLeadershipTeamProps> = ({
           </div>
         </div>
 
-        <div className="space-y-8 pt-10 border-t-2 border-slate-100">
+        {/* <div className="space-y-8 pt-10 border-t-2 border-slate-100">
           <h3 className="text-sm font-black text-blue-950 uppercase tracking-widest border-l-4 border-cyan-500 pl-4 bg-slate-50 py-2 w-max pr-6 rounded-r-xl">
             Jajaran Direksi
           </h3>
@@ -76,7 +75,7 @@ export const MasterLeadershipTeam: React.FC<MasterLeadershipTeamProps> = ({
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
 
       </div>
     </section>

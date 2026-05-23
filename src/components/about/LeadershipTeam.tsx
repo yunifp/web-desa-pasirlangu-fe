@@ -56,7 +56,7 @@ export const LeadershipTeam: React.FC = () => {
         {/* KLASTER KOMISARIS */}
         <div className="space-y-8">
           <h3 className="text-xs font-black text-[#0B4028] uppercase tracking-widest border-l-2 border-[#C5A059] pl-3">
-            Dewan Komisaris
+            Kepala Desa
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">

@@ -19,6 +19,7 @@ interface MasterImpactDashboardProps {
   disclaimerTitle: string;
   disclaimerDesc: string;
   buttonText: string;
+  buttonUrl: string; // 👇 TAMBAHAN PROP BARU
 }
 
 export const MasterImpactDashboard: React.FC<MasterImpactDashboardProps> = ({
@@ -30,7 +31,8 @@ export const MasterImpactDashboard: React.FC<MasterImpactDashboardProps> = ({
   metric3,
   disclaimerTitle,
   disclaimerDesc,
-  buttonText
+  buttonText,
+  buttonUrl // 👇 TERIMA PROP BARU
 }) => {
   return (
     <section className="py-24 bg-blue-950 text-white font-sans select-none overflow-hidden relative">
@@ -109,12 +111,15 @@ export const MasterImpactDashboard: React.FC<MasterImpactDashboardProps> = ({
               {disclaimerDesc}
             </p>
           </div>
-          <button 
-            onClick={() => alert(`Mengunduh Kajian Prospektus...`)}
-            className="px-8 py-4 bg-white hover:bg-cyan-50 text-blue-950 font-black rounded-full text-xs uppercase tracking-widest shadow-xl hover:shadow-cyan-500/20 hover:-translate-y-1 transition-all flex-shrink-0"
+          {/* 👇 PERBAIKAN: Ubah <button> menjadi <a> dan tambahkan href 👇 */}
+          <a 
+            href={buttonUrl}
+            target="_blank" // Opsional: buka di tab baru
+            rel="noopener noreferrer" // Keamanan tambahan saat menggunakan target="_blank"
+            className="px-8 py-4 bg-white hover:bg-cyan-50 text-blue-950 font-black rounded-full text-xs uppercase tracking-widest shadow-xl hover:shadow-cyan-500/20 hover:-translate-y-1 transition-all flex-shrink-0 inline-block text-center"
           >
             {buttonText}
-          </button>
+          </a>
         </div>
 
       </div>

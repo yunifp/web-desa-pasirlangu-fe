@@ -185,9 +185,9 @@ export const StaticPageDetail: React.FC = () => {
               const sanitizedImages = (Array.isArray(bData.images) ? bData.images : []).map((img: any) => ({ ...img, imgUrl: sanitizeUrl(img.imgUrl) }));
               return <MasterGalleryGrid key={block.id} badge={bData.badge || 'DOKUMENTASI VISUAL'} title={bData.title || 'Infrastruktur Terkait'} tagline={bData.tagline || 'Aset Resmi Korporat'} images={sanitizedImages} />;
             }
-            case 'dashboard': {
+           case 'dashboard': {
               const defaultMetric = { label: "Data", value: "0", unit: "Unit", subtitle: "Parameter", desc: "-" };
-              return <MasterImpactDashboard key={block.id} sectionSection={bData.section || 'PROSPEKSI STRATEGIS'} sectionTitle={bData.title || 'Peta Pencapaian Kinerja'} badgeText={bData.badge || 'Metrik Terukur'} metric1={bData.metric1 || defaultMetric} metric2={bData.metric2 || defaultMetric} metric3={bData.metric3 || defaultMetric} disclaimerTitle={bData.disclaimerTitle || 'Catatan Pengawasan BUMN'} disclaimerDesc={bData.disclaimerDesc || 'Seluruh data di atas disiarkan secara resmi guna mematuhi prinsip Good Corporate Governance (GCG).'} buttonText={bData.buttonText || 'Unduh Kajian Terkait'} />;
+              return <MasterImpactDashboard key={block.id} sectionSection={bData.section || 'PROSPEKSI STRATEGIS'} sectionTitle={bData.title || 'Peta Pencapaian Kinerja'} badgeText={bData.badge || 'Metrik Terukur'} metric1={bData.metric1 || defaultMetric} metric2={bData.metric2 || defaultMetric} metric3={bData.metric3 || defaultMetric} disclaimerTitle={bData.disclaimerTitle || 'Catatan Pengawasan BUMN'} disclaimerDesc={bData.disclaimerDesc || 'Seluruh data di atas disiarkan secara resmi guna mematuhi prinsip Good Corporate Governance (GCG).'} buttonText={bData.buttonText || 'Unduh Kajian Terkait'} buttonUrl={bData.buttonUrl || '#'} />;
             }
             case 'cta':
               return <MasterCtaBanner key={block.id} title={bData.title || 'Mari Membangun Kedaulatan Rantai Pasok Bersama'} subtitle={bData.subtitle || ''} buttonText={bData.buttonText || 'Hubungi Kemitraan'} buttonUrl={bData.buttonUrl || '#'} />;

@@ -117,7 +117,7 @@ export const CoreValuesGrid: React.FC = () => {
                       <IconComponent size={18} />
                     </div>
                     <span className="text-[10px] font-mono font-bold text-slate-300 group-hover:text-[#C5A059] transition-colors">
-                      VALUE_{idx + 1}
+                     {idx + 1}
                     </span>
                   </div>
 
