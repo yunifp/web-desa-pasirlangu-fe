@@ -154,8 +154,8 @@ export const ProfilePage: React.FC = () => {
     if (isLoading) {
         return (
             <div className="flex flex-col items-center justify-center min-h-[60vh]">
-                <Loader2 className="animate-spin text-teal-600 mb-4" size={40} />
-                <p className="text-slate-500 font-medium animate-pulse">Mengautentikasi data profil eksekutif...</p>
+                <Loader2 className="animate-spin text-blue-700 mb-4" size={40} />
+                <p className="text-slate-500 font-medium animate-pulse">Mengautentikasi data profil administrator...</p>
             </div>
         );
     }
@@ -168,8 +168,8 @@ export const ProfilePage: React.FC = () => {
                     <h1 className="text-2xl font-black text-slate-900 tracking-tight">Konfigurasi Akun Pengguna</h1>
                     <p className="text-xs text-slate-500 font-medium mt-1">Manajemen parameter otorisasi, identitas personal, dan tingkat keamanan akses portal.</p>
                 </div>
-                <div className="px-3 py-1.5 bg-teal-50 text-teal-700 border border-teal-100 rounded-lg font-bold text-xs flex items-center gap-1.5">
-                    <Layers size={14} /> PT PERMINAS
+                <div className="px-3 py-1.5 bg-blue-50 text-blue-800 border border-blue-200 rounded-lg font-bold text-xs flex items-center gap-1.5">
+                    <Layers size={14} /> DESA PASIR LANGU
                 </div>
             </div>
 
@@ -178,20 +178,20 @@ export const ProfilePage: React.FC = () => {
                 {/* --- KIRI: CARD IDENTITAS PENGGUNA --- */}
                 <div className="lg:col-span-1 space-y-6">
                     <div className="bg-white rounded-3xl shadow-sm border border-slate-200 p-8 text-center relative overflow-hidden flex flex-col justify-between">
-                        {/* Ornamen Mahkota Gelap Zamrud */}
-                        <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-br from-slate-950 via-slate-900 to-teal-950 rounded-t-3xl border-b border-slate-800"></div>
+                        {/* Ornamen Latar Biru Gelap */}
+                        <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-br from-slate-950 via-slate-900 to-blue-950 rounded-t-3xl border-b border-slate-800"></div>
                         
                         <div className="relative z-10 flex flex-col items-center mt-6">
-                            <div className="w-24 h-24 bg-gradient-to-tr from-teal-600 to-emerald-500 rounded-full flex items-center justify-center shadow-xl shadow-teal-900/20 border-4 border-white mb-4 text-white font-bold">
+                            <div className="w-24 h-24 bg-gradient-to-tr from-blue-800 to-blue-500 rounded-full flex items-center justify-center shadow-xl shadow-blue-900/20 border-4 border-white mb-4 text-white font-bold">
                                 <UserIcon size={40} />
                             </div>
                             <h2 className="text-xl font-black text-slate-900 tracking-tight">{profileInfo?.name}</h2>
-                            <p className="text-xs font-semibold text-teal-600 mb-6">{profileInfo?.email}</p>
+                            <p className="text-xs font-semibold text-blue-700 mb-6">{profileInfo?.email}</p>
 
                             <div className="w-full text-left space-y-4 border-t border-slate-100 pt-6">
                                 <div>
                                     <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest flex items-center gap-1.5 mb-2">
-                                        <ShieldCheck size={14} className="text-teal-600" /> Grup Hak Akses
+                                        <ShieldCheck size={14} className="text-blue-700" /> Grup Hak Akses
                                     </p>
                                     <div className="flex flex-wrap gap-1.5">
                                         {profileInfo?.roles?.map((r: any) => (
@@ -203,10 +203,10 @@ export const ProfilePage: React.FC = () => {
                                 </div>
                                 <div>
                                     <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest flex items-center gap-1.5 mb-2">
-                                        <Globe size={14} className="text-teal-600" /> Cakupan Otoritas
+                                        <Globe size={14} className="text-blue-700" /> Cakupan Otoritas
                                     </p>
                                     <div className="flex items-center gap-2 text-xs text-slate-700 bg-slate-50 p-3 rounded-xl border border-slate-150 font-bold">
-                                        <Globe size={15} className="text-teal-600 flex-shrink-0" /> Enterprise Global Master
+                                        <Globe size={15} className="text-blue-700 flex-shrink-0" /> Administrator Desa
                                     </div>
                                 </div>
                             </div>
@@ -226,27 +226,27 @@ export const ProfilePage: React.FC = () => {
                             {/* Ruas 1: Info Dasar */}
                             <div className="space-y-5">
                                 <h4 className="text-xs font-black text-slate-400 uppercase tracking-widest flex items-center gap-2 border-b border-slate-100 pb-2">
-                                    <UserIcon size={14} className="text-teal-600" /> Parameter Identitas
+                                    <UserIcon size={14} className="text-blue-700" /> Parameter Identitas
                                 </h4>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                                     <div className="space-y-1.5 group">
-                                        <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block group-focus-within:text-teal-600 transition-colors">Nama Lengkap Eksekutif</label>
+                                        <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block group-focus-within:text-blue-700 transition-colors">Nama Lengkap Administrator</label>
                                         <input
                                             name="name" required value={formData.name} onChange={handleChange}
-                                            className="w-full border border-slate-200 p-3.5 rounded-xl outline-none focus:ring-2 focus:ring-teal-600/20 focus:border-teal-600 transition-all font-bold text-xs text-slate-900 bg-slate-50/50 focus:bg-white"
+                                            className="w-full border border-slate-200 p-3.5 rounded-xl outline-none focus:ring-2 focus:ring-blue-700/20 focus:border-blue-700 transition-all font-bold text-xs text-slate-900 bg-slate-50/50 focus:bg-white"
                                         />
                                     </div>
                                     <div className="space-y-1.5 group">
-                                        <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block group-focus-within:text-teal-600 transition-colors">Surel Korespondensi</label>
+                                        <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block group-focus-within:text-blue-700 transition-colors">Surel Korespondensi</label>
                                         <div className="relative">
-                                            <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-teal-600 transition-colors" size={18} />
+                                            <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-700 transition-colors" size={18} />
                                             <input
                                                 name="email" type="email" required value={formData.email} onChange={handleChange}
-                                                className="w-full pl-11 pr-4 border border-slate-200 p-3.5 rounded-xl outline-none focus:ring-2 focus:ring-teal-600/20 focus:border-teal-600 transition-all font-bold text-xs text-slate-900 bg-slate-50/50 focus:bg-white"
+                                                className="w-full pl-11 pr-4 border border-slate-200 p-3.5 rounded-xl outline-none focus:ring-2 focus:ring-blue-700/20 focus:border-blue-700 transition-all font-bold text-xs text-slate-900 bg-slate-50/50 focus:bg-white"
                                             />
                                         </div>
                                         {formData.email !== profileInfo?.email && (
-                                            <p className="text-[10px] text-teal-600 font-bold mt-1">* Autentikasi token OTP akan ditransmisikan ke surel baru.</p>
+                                            <p className="text-[10px] text-blue-700 font-bold mt-1">* Autentikasi token OTP akan ditransmisikan ke surel baru.</p>
                                         )}
                                     </div>
                                 </div>
@@ -255,17 +255,17 @@ export const ProfilePage: React.FC = () => {
                             {/* Ruas 2: Kata Sandi */}
                             <div className="space-y-5 pt-4">
                                 <h4 className="text-xs font-black text-slate-400 uppercase tracking-widest flex items-center gap-2 border-b border-slate-100 pb-2">
-                                    <KeyRound size={14} className="text-teal-600" /> Kata Sandi Otorisasi (Opsional)
+                                    <KeyRound size={14} className="text-blue-700" /> Kata Sandi Otorisasi (Opsional)
                                 </h4>
                                 <p className="text-xs text-slate-400 mb-4 font-medium">Kosongkan ruas di bawah apabila tidak ada instruksi perubahan kata sandi.</p>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                                     <div className="space-y-1.5 group md:col-span-2">
-                                        <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block group-focus-within:text-teal-600 transition-colors">Kata Sandi Saat Ini</label>
+                                        <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block group-focus-within:text-blue-700 transition-colors">Kata Sandi Saat Ini</label>
                                         <div className="relative">
-                                            <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-teal-600 transition-colors" size={18} />
+                                            <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-700 transition-colors" size={18} />
                                             <input
                                                 name="oldPassword" type={showPasswords.old ? "text" : "password"} value={formData.oldPassword} onChange={handleChange}
-                                                className="w-full pl-11 pr-12 border border-slate-200 p-3.5 rounded-xl outline-none focus:ring-2 focus:ring-teal-600/20 focus:border-teal-600 transition-all font-bold text-xs text-slate-900 bg-slate-50/50 focus:bg-white placeholder:font-normal"
+                                                className="w-full pl-11 pr-12 border border-slate-200 p-3.5 rounded-xl outline-none focus:ring-2 focus:ring-blue-700/20 focus:border-blue-700 transition-all font-bold text-xs text-slate-900 bg-slate-50/50 focus:bg-white placeholder:font-normal"
                                                 placeholder="Kredensial sandi lama..."
                                             />
                                             <button type="button" onClick={() => togglePasswordVisibility('old')} className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 text-slate-400 hover:text-slate-600">
@@ -274,12 +274,12 @@ export const ProfilePage: React.FC = () => {
                                         </div>
                                     </div>
                                     <div className="space-y-1.5 group">
-                                        <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block group-focus-within:text-teal-600 transition-colors">Kata Sandi Baru</label>
+                                        <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block group-focus-within:text-blue-700 transition-colors">Kata Sandi Baru</label>
                                         <div className="relative">
-                                            <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-teal-600 transition-colors" size={18} />
+                                            <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-700 transition-colors" size={18} />
                                             <input
                                                 name="newPassword" type={showPasswords.new ? "text" : "password"} value={formData.newPassword} onChange={handleChange}
-                                                className="w-full pl-11 pr-12 border border-slate-200 p-3.5 rounded-xl outline-none focus:ring-2 focus:ring-teal-600/20 focus:border-teal-600 transition-all font-bold text-xs text-slate-900 bg-slate-50/50 focus:bg-white placeholder:font-normal"
+                                                className="w-full pl-11 pr-12 border border-slate-200 p-3.5 rounded-xl outline-none focus:ring-2 focus:ring-blue-700/20 focus:border-blue-700 transition-all font-bold text-xs text-slate-900 bg-slate-50/50 focus:bg-white placeholder:font-normal"
                                                 placeholder="Minimal 6 karakter"
                                             />
                                             <button type="button" onClick={() => togglePasswordVisibility('new')} className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 text-slate-400 hover:text-slate-600">
@@ -288,12 +288,12 @@ export const ProfilePage: React.FC = () => {
                                         </div>
                                     </div>
                                     <div className="space-y-1.5 group">
-                                        <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block group-focus-within:text-teal-600 transition-colors">Konfirmasi Kata Sandi</label>
+                                        <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block group-focus-within:text-blue-700 transition-colors">Konfirmasi Kata Sandi</label>
                                         <div className="relative">
-                                            <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-teal-600 transition-colors" size={18} />
+                                            <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-700 transition-colors" size={18} />
                                             <input
                                                 name="confirmPassword" type={showPasswords.confirm ? "text" : "password"} value={formData.confirmPassword} onChange={handleChange}
-                                                className="w-full pl-11 pr-12 border border-slate-200 p-3.5 rounded-xl outline-none focus:ring-2 focus:ring-teal-600/20 focus:border-teal-600 transition-all font-bold text-xs text-slate-900 bg-slate-50/50 focus:bg-white placeholder:font-normal"
+                                                className="w-full pl-11 pr-12 border border-slate-200 p-3.5 rounded-xl outline-none focus:ring-2 focus:ring-blue-700/20 focus:border-blue-700 transition-all font-bold text-xs text-slate-900 bg-slate-50/50 focus:bg-white placeholder:font-normal"
                                                 placeholder="Ulangi kombinasi sandi"
                                             />
                                             <button type="button" onClick={() => togglePasswordVisibility('confirm')} className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 text-slate-400 hover:text-slate-600">
@@ -310,7 +310,7 @@ export const ProfilePage: React.FC = () => {
                             <button
                                 type="submit"
                                 disabled={isSaving || isRequestingOtp}
-                                className="bg-gradient-to-r from-teal-600 to-emerald-600 text-white px-8 py-3.5 rounded-xl font-black text-xs uppercase tracking-widest shadow-lg shadow-teal-950/20 hover:from-teal-700 hover:to-emerald-700 transition-all active:scale-95 flex items-center justify-center gap-2 disabled:opacity-70 cursor-pointer"
+                                className="bg-gradient-to-r from-blue-800 to-blue-600 text-white px-8 py-3.5 rounded-xl font-black text-xs uppercase tracking-widest shadow-lg shadow-blue-950/20 hover:from-blue-900 hover:to-blue-700 transition-all active:scale-95 flex items-center justify-center gap-2 disabled:opacity-70 cursor-pointer"
                             >
                                 {isSaving || isRequestingOtp ? <><Loader2 size={16} className="animate-spin" /> Memproses...</> : <><Save size={16} /> Terapkan Sinkronisasi</>}
                             </button>
@@ -330,7 +330,7 @@ export const ProfilePage: React.FC = () => {
                         <form onSubmit={handleVerifyOtpSubmit} className="p-7 space-y-5">
                             <p className="text-xs text-slate-500 text-center font-medium leading-relaxed max-w-xs mx-auto">
                                 Token OTP telah ditransmisikan ke alamat baru: <br />
-                                <strong className="text-teal-600 block mt-1">{formData.email}</strong>
+                                <strong className="text-blue-700 block mt-1">{formData.email}</strong>
                             </p>
                             <div className="space-y-1.5 group">
                                 <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block text-center">Token 6 Digit</label>
@@ -339,7 +339,7 @@ export const ProfilePage: React.FC = () => {
                                     <input
                                         required autoFocus maxLength={6}
                                         value={otp} onChange={e => setOtp(e.target.value.replace(/\D/g, ''))}
-                                        className="w-full pl-11 pr-4 py-3.5 border border-slate-200 rounded-xl outline-none focus:border-teal-600 font-mono font-bold text-center text-lg tracking-[0.6em] text-slate-900 bg-slate-50/50"
+                                        className="w-full pl-11 pr-4 py-3.5 border border-slate-200 rounded-xl outline-none focus:border-blue-700 font-mono font-bold text-center text-lg tracking-[0.6em] text-slate-900 bg-slate-50/50"
                                         placeholder="••••••"
                                     />
                                 </div>
@@ -372,7 +372,7 @@ export const ProfilePage: React.FC = () => {
             {isSuccessModalOpen && (
                 <div className="fixed inset-0 z-[80] flex items-center justify-center bg-slate-950/70 backdrop-blur-md p-4">
                     <div className="bg-white rounded-3xl w-full max-w-sm shadow-2xl overflow-hidden animate-in zoom-in-95 duration-200 border border-slate-100 text-center p-8">
-                        <div className="w-16 h-16 bg-teal-50 text-teal-600 rounded-full flex items-center justify-center mx-auto mb-4 border border-teal-100">
+                        <div className="w-16 h-16 bg-blue-50 text-blue-700 rounded-full flex items-center justify-center mx-auto mb-4 border border-blue-100">
                             <CheckCircle size={32} />
                         </div>
                         <h2 className="text-lg font-black text-slate-900">Pembaruan Berhasil</h2>

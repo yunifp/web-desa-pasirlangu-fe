@@ -7,7 +7,7 @@ import type { Product } from '../../types/cms';
 import {
   ShoppingBag, MessageCircle, Tag,
   ShieldCheck, Truck, BadgeCheck, Sparkles,
-  ExternalLink, PackageCheck, ChevronRight
+  PackageCheck, ChevronRight
 } from 'lucide-react';
 
 export const ProductDetailPage: React.FC = () => {
@@ -237,9 +237,7 @@ export const ProductDetailPage: React.FC = () => {
                   <h3 className="text-xl font-black text-blue-950 tracking-tight">Proses Transaksi</h3>
                   <p className="text-xs text-slate-500 mt-1.5 font-medium uppercase tracking-wider">Pilih platform afiliasi resmi</p>
                 </div>
-                <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center border border-blue-100">
-                  <ExternalLink className="text-cyan-600" size={20} />
-                </div>
+                
               </div>
 
               <div className="grid sm:grid-cols-2 gap-5">

@@ -44,9 +44,9 @@ export const PostPage: React.FC = () => {
 
     const StatusBadge = ({ status }: { status: PostStatus }) => {
         switch (status) {
-            case 'PUBLISHED': return <span className="bg-emerald-50 text-emerald-700 text-[10px] font-bold px-2.5 py-1 rounded-lg border border-emerald-200/80 uppercase tracking-wide">PUBLISHED</span>;
-            case 'DRAFT': return <span className="bg-amber-50 text-amber-700 text-[10px] font-bold px-2.5 py-1 rounded-lg border border-amber-200/80 uppercase tracking-wide">DRAFT</span>;
-            case 'ARCHIVED': return <span className="bg-slate-100 text-slate-600 text-[10px] font-bold px-2.5 py-1 rounded-lg border border-slate-200 uppercase tracking-wide">ARCHIVED</span>;
+            case 'PUBLISHED': return <span className="bg-cyan-50 text-cyan-700 text-[10px] font-black px-3 py-1.5 rounded-xl border border-cyan-200/80 uppercase tracking-widest shadow-sm">PUBLISHED</span>;
+            case 'DRAFT': return <span className="bg-amber-50 text-amber-700 text-[10px] font-black px-3 py-1.5 rounded-xl border border-amber-200/80 uppercase tracking-widest shadow-sm">DRAFT</span>;
+            case 'ARCHIVED': return <span className="bg-slate-100 text-slate-600 text-[10px] font-black px-3 py-1.5 rounded-xl border border-slate-200 uppercase tracking-widest shadow-sm">ARCHIVED</span>;
             default: return null;
         }
     };
@@ -74,45 +74,46 @@ export const PostPage: React.FC = () => {
     };
 
     return (
-        <div className="space-y-6 font-sans animate-in fade-in duration-300">
+        <div className="space-y-8 font-sans animate-in fade-in duration-300 pb-10">
             {/* Header Seksi */}
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 bg-white p-8 rounded-[2rem] rounded-tr-none border-2 border-blue-50 shadow-sm hover:border-cyan-100 transition-colors group">
                 <div>
-                    <h1 className="text-2xl font-black text-slate-900 tracking-tight">Manajemen Artikel</h1>
-                    <p className="text-xs text-slate-500 font-medium mt-1">Pengelolaan postingan web dengan mode halaman penuh (*dedicated page*).</p>
+                    <h1 className="text-2xl lg:text-3xl font-light text-slate-800 tracking-tight">Manajemen Artikel</h1>
+                    <p className="text-sm text-slate-500 font-medium mt-2">Pengelolaan postingan web dengan mode halaman penuh (*dedicated page*).</p>
                 </div>
                 {canCreate && (
                     <button 
                         onClick={() => navigate('/posts/create')} 
-                        className="bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white px-5 py-3 rounded-xl flex items-center gap-2 shadow-lg shadow-teal-950/20 transition-all font-bold text-xs uppercase tracking-widest active:scale-95"
+                        className="bg-blue-950 hover:bg-blue-900 text-white px-6 py-3.5 rounded-2xl rounded-tr-none flex items-center gap-3 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all font-black text-xs uppercase tracking-widest active:scale-95 group/btn"
                     >
-                        <Plus size={16} /> Tulis Postingan Baru
+                        <Plus size={16} className="text-cyan-400 group-hover/btn:rotate-90 transition-transform" /> Tulis Postingan Baru
                     </button>
                 )}
             </div>
 
             {/* Kontainer Utama */}
-            <div className="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
+            <div className="bg-white rounded-[2rem] rounded-tr-none shadow-sm border-2 border-blue-50 overflow-hidden flex flex-col hover:border-cyan-100 transition-colors">
+                
                 {/* Bar Filter & Pencarian */}
-                <div className="p-6 border-b border-slate-100 bg-slate-50/50 grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <div className="relative">
-                        <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+                <div className="p-6 lg:p-8 border-b border-blue-50 bg-slate-50/50 grid grid-cols-1 sm:grid-cols-3 gap-6">
+                    <div className="relative group">
+                        <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-cyan-500 transition-colors" size={18} />
                         <input
                             type="text" placeholder="Cari judul artikel..."
                             value={searchTerm} onChange={(e) => { setSearchTerm(e.target.value); setPage(1); }}
-                            className="w-full pl-11 pr-4 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-teal-600/20 focus:border-teal-600 outline-none text-xs font-bold text-slate-800 shadow-2xs transition-all"
+                            className="w-full pl-12 pr-5 py-3.5 bg-white border border-blue-100 rounded-2xl rounded-tr-none focus:ring-4 focus:ring-cyan-500/10 focus:border-cyan-500 outline-none text-sm font-bold text-slate-800 shadow-sm transition-all"
                         />
                     </div>
                     <select
                         value={filterCategory} onChange={(e) => { setFilterCategory(e.target.value); setPage(1); }}
-                        className="border border-slate-200 p-3 rounded-xl outline-none focus:ring-2 focus:ring-teal-600/20 focus:border-teal-600 bg-white text-xs font-bold text-slate-700 shadow-2xs cursor-pointer"
+                        className="border border-blue-100 p-3.5 rounded-2xl rounded-tr-none outline-none focus:ring-4 focus:ring-cyan-500/10 focus:border-cyan-500 bg-white text-sm font-bold text-slate-700 shadow-sm cursor-pointer transition-all"
                     >
                         <option value="">-- Semua Kategori --</option>
                         {categories.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
                     </select>
                     <select
                         value={filterStatus} onChange={(e) => { setFilterStatus(e.target.value); setPage(1); }}
-                        className="border border-slate-200 p-3 rounded-xl outline-none focus:ring-2 focus:ring-teal-600/20 focus:border-teal-600 bg-white text-xs font-bold text-slate-700 shadow-2xs cursor-pointer"
+                        className="border border-blue-100 p-3.5 rounded-2xl rounded-tr-none outline-none focus:ring-4 focus:ring-cyan-500/10 focus:border-cyan-500 bg-white text-sm font-bold text-slate-700 shadow-sm cursor-pointer transition-all"
                     >
                         <option value="">-- Semua Status --</option>
                         <option value="PUBLISHED">PUBLISHED</option>
@@ -123,94 +124,105 @@ export const PostPage: React.FC = () => {
 
                 {/* Tabel Konten */}
                 <div className="overflow-x-auto flex-1">
-                    <table className="w-full text-left border-collapse">
-                        <thead className="bg-slate-50 text-[10px] font-black uppercase text-slate-400 tracking-wider border-b border-slate-200">
+                    <table className="w-full text-left border-collapse min-w-[800px]">
+                        <thead className="bg-slate-50 text-[10px] font-black uppercase text-slate-400 tracking-widest border-b-2 border-blue-50">
                             <tr>
-                                <th className="p-5 whitespace-nowrap">Informasi Artikel</th>
-                                <th className="p-5 whitespace-nowrap">Kategori & Layout Bawaan</th>
-                                <th className="p-5 whitespace-nowrap">Penulis & Tanggal</th>
-                                <th className="p-5 whitespace-nowrap">Status</th>
-                                {(canUpdate || canDelete) && <th className="p-5 text-center whitespace-nowrap">Aksi</th>}
+                                <th className="p-6 whitespace-nowrap">Informasi Artikel</th>
+                                <th className="p-6 whitespace-nowrap">Kategori & Layout Bawaan</th>
+                                <th className="p-6 whitespace-nowrap">Penulis & Tanggal</th>
+                                <th className="p-6 whitespace-nowrap text-center">Status</th>
+                                {(canUpdate || canDelete) && <th className="p-6 text-center whitespace-nowrap">Aksi</th>}
                             </tr>
                         </thead>
-                        <tbody className="text-xs divide-y divide-slate-100">
+                        <tbody className="text-sm divide-y divide-blue-50">
                             {isLoading ? (
-                                <tr><td colSpan={5} className="p-20 text-center text-slate-400 font-bold"><Loader2 className="animate-spin mx-auto mb-2 text-teal-600" size={24} />Memuat data...</td></tr>
+                                <tr><td colSpan={5} className="p-24 text-center text-slate-400 font-bold"><Loader2 className="animate-spin mx-auto mb-4 text-cyan-500" size={32} />Memuat data...</td></tr>
                             ) : posts.length > 0 ? (
                                 posts.map(item => (
-                                    <tr key={item.id} className="hover:bg-slate-50/80 transition-colors group">
-                                        <td className="p-5 max-w-xs">
-                                            <div className="flex items-start gap-3">
-                                                <div className="p-2 bg-teal-50 text-teal-600 rounded-lg mt-0.5 flex-shrink-0"><FileText size={16} /></div>
-                                                <div className="truncate">
-                                                    <div className="font-black text-slate-900 text-sm truncate" title={item.title}>{item.title}</div>
-                                                    {item.titleEn && <div className="text-[11px] text-slate-500 truncate italic">EN: {item.titleEn}</div>}
-                                                    <div className="text-[11px] text-teal-600 truncate font-mono mt-0.5">{item.slug}</div>
+                                    <tr key={item.id} className="hover:bg-blue-50/50 transition-colors group">
+                                        <td className="p-6 max-w-xs">
+                                            <div className="flex items-start gap-4">
+                                                <div className="w-12 h-12 rounded-2xl rounded-tr-none bg-cyan-50 flex items-center justify-center flex-shrink-0 border border-cyan-100 shadow-sm group-hover:scale-105 transition-transform">
+                                                    <FileText size={20} className="text-cyan-600" />
+                                                </div>
+                                                <div className="truncate py-1">
+                                                    <div className="font-black text-slate-800 text-sm truncate group-hover:text-blue-950 transition-colors" title={item.title}>{item.title}</div>
+                                                    {item.titleEn && <div className="text-[11px] text-slate-500 truncate mt-1 italic">EN: {item.titleEn}</div>}
+                                                    <div className="text-[10px] text-cyan-600 font-mono mt-2 px-2 py-1 bg-cyan-50 rounded-lg w-fit border border-cyan-100">{item.slug}</div>
                                                 </div>
                                             </div>
                                         </td>
-                                        <td className="p-5 whitespace-nowrap">
-                                            <div className="flex items-center gap-1.5 font-bold text-slate-800 text-xs">
-                                                <Folder size={13} className="text-teal-600" /> {item.category?.name}
+                                        <td className="p-6 whitespace-nowrap">
+                                            <div className="flex items-center gap-2 font-bold text-slate-800 text-xs">
+                                                <Folder size={14} className="text-cyan-500" /> {item.category?.name}
                                             </div>
                                             {item.category?.template && (
-                                                <div className="flex items-center gap-1 text-[10px] bg-slate-50 text-slate-500 px-2 py-1 rounded-md w-fit mt-1.5 border border-slate-200 font-semibold">
-                                                    <Layers size={10} className="text-teal-600" /> Auto-Layout: {item.category.template.name}
+                                                <div className="flex items-center gap-1.5 text-[10px] bg-slate-50 text-slate-500 px-2 py-1 rounded-md w-fit mt-2 border border-slate-200 font-semibold shadow-sm">
+                                                    <Layers size={12} className="text-cyan-600" /> Auto-Layout: {item.category.template.name}
                                                 </div>
                                             )}
                                         </td>
-                                        <td className="p-5 whitespace-nowrap">
-                                            <div className="flex items-center gap-1.5 text-xs font-bold text-slate-800">
-                                                <User size={13} className="text-slate-400" /> {item.author?.name || 'Eksekutif'}
+                                        <td className="p-6 whitespace-nowrap">
+                                            <div className="flex items-center gap-2 text-xs font-bold text-slate-800">
+                                                <User size={14} className="text-slate-400" /> {item.author?.name || 'Eksekutif'}
                                             </div>
-                                            <div className="flex items-center gap-1.5 text-[10px] font-semibold text-slate-400 mt-1">
+                                            <div className="flex items-center gap-2 text-[10px] font-semibold text-slate-400 mt-2">
                                                 <Calendar size={12} /> {formatDate(item.publishedAt || item.createdAt)}
                                             </div>
                                         </td>
-                                        <td className="p-5 whitespace-nowrap"><StatusBadge status={item.status} /></td>
+                                        <td className="p-6 whitespace-nowrap text-center"><StatusBadge status={item.status} /></td>
                                         {(canUpdate || canDelete) && (
-                                            <td className="p-5 whitespace-nowrap">
-                                                <div className="flex justify-center gap-1.5">
+                                            <td className="p-6 whitespace-nowrap">
+                                                <div className="flex justify-center gap-2">
                                                     {canUpdate && (
                                                         <button 
                                                             onClick={() => navigate(`/posts/edit/${item.id}`)} 
-                                                            className="p-2 text-teal-600 hover:bg-teal-50 rounded-lg transition-all" title="Edit Halaman"
+                                                            className="p-2.5 text-blue-900 hover:text-white hover:bg-blue-950 rounded-xl transition-all shadow-sm hover:shadow-md" title="Edit Halaman"
                                                         >
                                                             <Edit size={16} />
                                                         </button>
                                                     )}
-                                                    {canDelete && <button onClick={() => confirmDelete(item.id)} className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-all"><Trash2 size={16} /></button>}
+                                                    {canDelete && (
+                                                        <button 
+                                                            onClick={() => confirmDelete(item.id)} 
+                                                            className="p-2.5 text-red-500 hover:text-white hover:bg-red-500 rounded-xl transition-all shadow-sm hover:shadow-md" title="Hapus Artikel"
+                                                        >
+                                                            <Trash2 size={16} />
+                                                        </button>
+                                                    )}
                                                 </div>
                                             </td>
                                         )}
                                     </tr>
                                 ))
-                            ) : (<tr><td colSpan={5} className="p-20 text-center text-slate-400 font-bold">Artikel belum tersedia.</td></tr>)}
+                            ) : (<tr><td colSpan={5} className="p-24 text-center text-slate-400 font-bold bg-slate-50 border-2 border-dashed border-blue-100 rounded-[2rem]">Artikel belum tersedia.</td></tr>)}
                         </tbody>
                     </table>
                 </div>
 
                 {/* Footer Paginasi */}
-                <div className="flex items-center justify-between px-6 py-4 bg-slate-50 border-t border-slate-200">
-                    <span className="text-[10px] text-slate-500 font-black uppercase tracking-wider">Total {meta.totalItems} Artikel</span>
-                    <div className="flex items-center gap-1.5 bg-white border border-slate-200 rounded-lg p-1 shadow-2xs">
-                        <button onClick={() => setPage(p => Math.max(1, p - 1))} disabled={meta.currentPage <= 1} className="px-3 py-1 text-[11px] font-bold disabled:opacity-30 text-slate-700">Prev</button>
-                        <span className="px-3 py-1 text-[11px] font-black text-teal-700 bg-teal-50 rounded-md">{meta.currentPage} / {meta.totalPages || 1}</span>
-                        <button onClick={() => setPage(p => Math.min(meta.totalPages, p + 1))} disabled={meta.currentPage >= meta.totalPages || meta.totalPages === 0} className="px-3 py-1 text-[11px] font-bold disabled:opacity-30 text-slate-700">Next</button>
+                <div className="flex items-center justify-between px-6 lg:px-8 py-5 bg-white border-t-2 border-blue-50 rounded-b-[2rem] rounded-bl-none">
+                    <span className="text-[10px] text-slate-500 font-black uppercase tracking-widest border-l-2 border-cyan-400 pl-3">Total {meta.totalItems} Artikel</span>
+                    <div className="flex items-center gap-2 bg-slate-50 border border-blue-100 rounded-2xl rounded-tr-none p-1.5 shadow-sm">
+                        <button onClick={() => setPage(p => Math.max(1, p - 1))} disabled={meta.currentPage <= 1} className="px-4 py-2 text-[11px] font-black disabled:opacity-30 text-slate-700 hover:bg-white rounded-xl transition-colors">Prev</button>
+                        <span className="px-4 py-2 text-[11px] font-black text-white bg-blue-950 rounded-xl shadow-sm">{meta.currentPage} / {meta.totalPages || 1}</span>
+                        <button onClick={() => setPage(p => Math.min(meta.totalPages, p + 1))} disabled={meta.currentPage >= meta.totalPages || meta.totalPages === 0} className="px-4 py-2 text-[11px] font-black disabled:opacity-30 text-slate-700 hover:bg-white rounded-xl transition-colors">Next</button>
                     </div>
                 </div>
             </div>
 
             {/* MODAL DELETE */}
             {isDeleteModalOpen && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/70 backdrop-blur-md p-4">
-                    <div className="bg-white rounded-3xl w-full max-w-sm shadow-2xl text-center p-8 border border-slate-100 animate-in zoom-in-95 duration-200">
-                        <AlertTriangle className="text-red-500 mx-auto mb-4" size={40} />
-                        <h2 className="text-lg font-black text-slate-900">Hapus Artikel?</h2>
-                        <p className="text-xs text-slate-500 mt-1 font-medium">Aksi ini bersifat mutlak dan tidak dapat dipulihkan.</p>
-                        <div className="flex gap-3 mt-6">
-                            <button onClick={() => setIsDeleteModalOpen(false)} className="flex-1 py-3 bg-slate-100 text-slate-700 font-bold text-xs rounded-xl hover:bg-slate-200 transition-colors">Batal</button>
-                            <button onClick={executeDelete} className="flex-1 py-3 bg-red-600 hover:bg-red-700 text-white font-bold text-xs rounded-xl shadow-md transition-colors">Ya, Hapus</button>
+                <div className="fixed inset-0 z-[60] flex items-center justify-center bg-blue-950/80 backdrop-blur-sm p-4">
+                    <div className="bg-white rounded-[2rem] rounded-tr-none w-full max-w-sm shadow-2xl text-center p-8 border-4 border-white/20 animate-in zoom-in-95 duration-200">
+                        <div className="w-20 h-20 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-6 border-4 border-red-100">
+                            <AlertTriangle className="text-red-500" size={36} />
+                        </div>
+                        <h2 className="text-xl font-black text-slate-900 tracking-tight">Hapus Artikel?</h2>
+                        <p className="text-sm text-slate-500 mt-2 font-medium leading-relaxed">Aksi ini bersifat mutlak dan tidak dapat dipulihkan.</p>
+                        <div className="flex gap-4 mt-8">
+                            <button onClick={() => setIsDeleteModalOpen(false)} className="flex-1 py-3.5 bg-slate-100 text-slate-700 font-black text-xs rounded-xl hover:bg-slate-200 transition-colors uppercase tracking-wider">Batal</button>
+                            <button onClick={executeDelete} className="flex-1 py-3.5 bg-red-500 hover:bg-red-600 text-white font-black text-xs rounded-xl shadow-md shadow-red-500/20 transition-all active:scale-95 uppercase tracking-wider">Ya, Hapus</button>
                         </div>
                     </div>
                 </div>
@@ -218,12 +230,14 @@ export const PostPage: React.FC = () => {
 
             {/* MODAL SUKSES */}
             {isSuccessModalOpen && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/70 backdrop-blur-md p-4">
-                    <div className="bg-white rounded-3xl w-full max-w-sm shadow-2xl text-center p-8 border border-slate-100 animate-in zoom-in-95 duration-200">
-                        <CheckCircle className="text-teal-600 mx-auto mb-4" size={40} />
-                        <h2 className="text-lg font-black text-slate-900">Konfirmasi Rilis!</h2>
-                        <p className="text-xs text-slate-500 mt-1 font-medium">{successMessage}</p>
-                        <button onClick={() => setIsSuccessModalOpen(false)} className="mt-6 w-full py-3 bg-slate-950 hover:bg-slate-900 text-white font-bold text-xs rounded-xl shadow-md">Tutup Panel</button>
+                <div className="fixed inset-0 z-[60] flex items-center justify-center bg-blue-950/80 backdrop-blur-sm p-4">
+                    <div className="bg-white rounded-[2rem] rounded-tr-none w-full max-w-sm shadow-2xl text-center p-8 border-4 border-white/20 animate-in zoom-in-95 duration-200">
+                        <div className="w-20 h-20 bg-cyan-50 rounded-full flex items-center justify-center mx-auto mb-6 border-4 border-cyan-100">
+                            <CheckCircle className="text-cyan-500" size={40} />
+                        </div>
+                        <h2 className="text-xl font-black text-slate-900 tracking-tight">Berhasil!</h2>
+                        <p className="text-sm text-slate-500 mt-2 font-medium leading-relaxed">{successMessage}</p>
+                        <button onClick={() => setIsSuccessModalOpen(false)} className="mt-8 w-full py-3.5 bg-blue-950 hover:bg-blue-900 text-white font-black text-xs rounded-xl shadow-lg hover:shadow-xl transition-all uppercase tracking-widest active:scale-95">Tutup Panel</button>
                     </div>
                 </div>
             )}

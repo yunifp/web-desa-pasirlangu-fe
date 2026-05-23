@@ -28,14 +28,10 @@ export const PageListPage: React.FC = () => {
 
     const StatusBadge = ({ status }: { status: PostStatus }) => {
         switch (status) {
-            case 'PUBLISHED':
-                return <span className="bg-emerald-50 text-emerald-700 text-[10px] font-bold px-2.5 py-1 rounded-lg border border-emerald-200/80 uppercase tracking-wide">PUBLISHED</span>;
-            case 'DRAFT':
-                return <span className="bg-amber-50 text-amber-700 text-[10px] font-bold px-2.5 py-1 rounded-lg border border-amber-200/80 uppercase tracking-wide">DRAFT</span>;
-            case 'ARCHIVED':
-                return <span className="bg-slate-100 text-slate-600 text-[10px] font-bold px-2.5 py-1 rounded-lg border border-slate-200 uppercase tracking-wide">ARCHIVED</span>;
-            default:
-                return null;
+            case 'PUBLISHED': return <span className="bg-cyan-50 text-cyan-700 text-[10px] font-black px-3 py-1.5 rounded-xl border border-cyan-200/80 uppercase tracking-widest shadow-sm">PUBLISHED</span>;
+            case 'DRAFT': return <span className="bg-amber-50 text-amber-700 text-[10px] font-black px-3 py-1.5 rounded-xl border border-amber-200/80 uppercase tracking-widest shadow-sm">DRAFT</span>;
+            case 'ARCHIVED': return <span className="bg-slate-100 text-slate-600 text-[10px] font-black px-3 py-1.5 rounded-xl border border-slate-200 uppercase tracking-widest shadow-sm">ARCHIVED</span>;
+            default: return null;
         }
     };
 
@@ -59,80 +55,79 @@ export const PageListPage: React.FC = () => {
     };
 
     return (
-        <div className="space-y-6 font-sans animate-in fade-in duration-300">
+        <div className="space-y-8 font-sans animate-in fade-in duration-300 pb-10">
             {/* Navigasi Ruas */}
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 bg-white p-8 rounded-[2rem] rounded-tr-none border-2 border-blue-50 shadow-sm hover:border-cyan-100 transition-colors group">
                 <div>
-                    <h1 className="text-2xl font-black text-slate-900 tracking-tight">Daftar Halaman Statis</h1>
-                    <p className="text-xs text-slate-500 font-medium mt-1">Kelola halaman statis tunggal yang diikatkan langsung ke template tata letak.</p>
+                    <h1 className="text-2xl lg:text-3xl font-light text-slate-800 tracking-tight">Daftar Halaman Statis</h1>
+                    <p className="text-sm text-slate-500 font-medium mt-2">Kelola halaman statis tunggal yang diikatkan langsung ke template tata letak.</p>
                 </div>
                 {canCreate && (
                     <button 
                         onClick={() => navigate('/pages/create')} 
-                        className="bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white px-5 py-3 rounded-xl flex items-center gap-2 font-bold text-xs uppercase tracking-widest shadow-lg shadow-teal-950/20 transition-all active:scale-95"
+                        className="bg-blue-950 hover:bg-blue-900 text-white px-6 py-3.5 rounded-2xl rounded-tr-none flex items-center gap-3 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all font-black text-xs uppercase tracking-widest active:scale-95 group/btn"
                     >
-                        <Plus size={16} /> Buat Halaman Baru
+                        <Plus size={16} className="text-cyan-400 group-hover/btn:rotate-90 transition-transform" /> Buat Halaman Baru
                     </button>
                 )}
             </div>
 
             {/* Tabel Penampang */}
-            <div className="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm flex flex-col">
+            <div className="bg-white rounded-[2rem] rounded-tr-none border-2 border-blue-50 overflow-hidden shadow-sm flex flex-col hover:border-cyan-100 transition-colors">
                 <div className="overflow-x-auto">
-                    <table className="w-full text-left border-collapse">
-                        <thead className="bg-slate-50 text-[10px] font-black uppercase text-slate-400 tracking-wider border-b border-slate-200">
+                    <table className="w-full text-left border-collapse min-w-[800px]">
+                        <thead className="bg-slate-50 text-[10px] font-black uppercase text-slate-400 tracking-widest border-b-2 border-blue-50">
                             <tr>
-                                <th className="p-5 whitespace-nowrap">Judul & Pengenal (Slug)</th>
-                                <th className="p-5 whitespace-nowrap">Pemetaan Template</th>
-                                <th className="p-5 whitespace-nowrap">Penulis Terdaftar</th>
-                                <th className="p-5 whitespace-nowrap">Status Publikasi</th>
-                                {(canUpdate || canDelete) && <th className="p-5 text-center whitespace-nowrap">Aksi</th>}
+                                <th className="p-6 whitespace-nowrap">Judul & Pengenal (Slug)</th>
+                                <th className="p-6 whitespace-nowrap">Pemetaan Template</th>
+                                <th className="p-6 whitespace-nowrap">Penulis Terdaftar</th>
+                                <th className="p-6 whitespace-nowrap text-center">Status Publikasi</th>
+                                {(canUpdate || canDelete) && <th className="p-6 text-center whitespace-nowrap">Aksi</th>}
                             </tr>
                         </thead>
-                        <tbody className="text-xs divide-y divide-slate-100 font-medium">
+                        <tbody className="text-sm divide-y divide-blue-50">
                             {isLoading ? (
                                 <tr>
-                                    <td colSpan={5} className="p-20 text-center text-slate-400 font-bold">
-                                        <Loader2 className="animate-spin mx-auto mb-2 text-teal-600" size={24} />
+                                    <td colSpan={5} className="p-24 text-center text-slate-400 font-bold">
+                                        <Loader2 className="animate-spin mx-auto mb-4 text-cyan-500" size={32} />
                                         Memuat data halaman...
                                     </td>
                                 </tr>
                             ) : pages.length > 0 ? (
                                 pages.map(p => (
-                                    <tr key={p.id} className="hover:bg-slate-50/80 transition-colors group">
-                                        <td className="p-5 max-w-xs">
-                                            <div className="flex items-start gap-3">
-                                                <div className="p-2 bg-teal-50 text-teal-600 rounded-lg mt-0.5 flex-shrink-0">
-                                                    <FileText size={16} />
+                                    <tr key={p.id} className="hover:bg-blue-50/50 transition-colors group">
+                                        <td className="p-6 max-w-xs">
+                                            <div className="flex items-start gap-4">
+                                                <div className="w-12 h-12 rounded-2xl rounded-tr-none bg-cyan-50 flex items-center justify-center flex-shrink-0 border border-cyan-100 shadow-sm group-hover:scale-105 transition-transform">
+                                                    <FileText size={20} className="text-cyan-600" />
                                                 </div>
-                                                <div className="truncate">
-                                                    <div className="font-black text-slate-900 text-sm truncate" title={p.title}>{p.title}</div>
-                                                    {p.titleEn && <div className="text-[11px] text-slate-500 truncate italic">EN: {p.titleEn}</div>}
-                                                    <div className="text-[11px] font-mono text-teal-600 mt-0.5 truncate">{p.slug}</div>
+                                                <div className="truncate py-1">
+                                                    <div className="font-black text-slate-800 text-sm truncate group-hover:text-blue-950 transition-colors" title={p.title}>{p.title}</div>
+                                                    {p.titleEn && <div className="text-[11px] text-slate-500 truncate mt-1 italic">EN: {p.titleEn}</div>}
+                                                    <div className="text-[10px] text-cyan-600 font-mono mt-2 px-2 py-1 bg-cyan-50 rounded-lg w-fit border border-cyan-100">{p.slug}</div>
                                                 </div>
                                             </div>
                                         </td>
-                                        <td className="p-5 whitespace-nowrap">
-                                            <span className="bg-slate-50 text-slate-800 px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 w-fit border border-slate-200 shadow-2xs">
-                                                <Layers size={13} className="text-teal-600" /> {p.template?.name || 'Layout Default Statis'}
+                                        <td className="p-6 whitespace-nowrap">
+                                            <span className="bg-slate-50 text-slate-800 px-3 py-1.5 rounded-xl text-[11px] font-bold flex items-center gap-2 w-fit border border-slate-200 shadow-sm">
+                                                <Layers size={14} className="text-cyan-600" /> {p.template?.name || 'Layout Default Statis'}
                                             </span>
                                         </td>
-                                        <td className="p-5 whitespace-nowrap">
-                                            <div className="flex items-center gap-1.5 text-xs font-bold text-slate-800">
-                                                <User size={13} className="text-slate-400" /> {p.author?.name || 'Eksekutif'}
+                                        <td className="p-6 whitespace-nowrap">
+                                            <div className="flex items-center gap-2 text-xs font-bold text-slate-800">
+                                                <User size={14} className="text-slate-400" /> {p.author?.name || 'Eksekutif'}
                                             </div>
                                         </td>
-                                        <td className="p-5 whitespace-nowrap">
+                                        <td className="p-6 whitespace-nowrap text-center">
                                             <StatusBadge status={p.status} />
                                         </td>
                                         {(canUpdate || canDelete) && (
-                                            <td className="p-5 whitespace-nowrap">
-                                                <div className="flex justify-center gap-1.5">
+                                            <td className="p-6 whitespace-nowrap">
+                                                <div className="flex justify-center gap-2">
                                                     {canUpdate && (
                                                         <button 
                                                             onClick={() => navigate(`/pages/edit/${p.id}`)} 
-                                                            className="p-2 text-teal-600 hover:bg-teal-50 rounded-lg transition-all" 
-                                                            title="Edit Tata Letak"
+                                                            className="p-2.5 text-blue-900 hover:text-white hover:bg-blue-950 rounded-xl transition-all shadow-sm hover:shadow-md" title="Edit Tata Letak"
                                                         >
                                                             <Edit size={16} />
                                                         </button>
@@ -140,8 +135,7 @@ export const PageListPage: React.FC = () => {
                                                     {canDelete && (
                                                         <button 
                                                             onClick={() => confirmDelete(p.id)} 
-                                                            className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-all" 
-                                                            title="Hapus Halaman"
+                                                            className="p-2.5 text-red-500 hover:text-white hover:bg-red-500 rounded-xl transition-all shadow-sm hover:shadow-md" title="Hapus Halaman"
                                                         >
                                                             <Trash2 size={16} />
                                                         </button>
@@ -153,7 +147,7 @@ export const PageListPage: React.FC = () => {
                                 ))
                             ) : (
                                 <tr>
-                                    <td colSpan={5} className="p-20 text-center text-slate-400 font-bold">
+                                    <td colSpan={5} className="p-24 text-center text-slate-400 font-bold bg-slate-50 border-2 border-dashed border-blue-100 rounded-[2rem]">
                                         Belum ada halaman statis yang terdaftar.
                                     </td>
                                 </tr>
@@ -163,21 +157,23 @@ export const PageListPage: React.FC = () => {
                 </div>
 
                 {/* Footer Rekap */}
-                <div className="px-6 py-4 bg-slate-50 border-t border-slate-200 text-[10px] text-slate-500 font-black uppercase tracking-wider">
-                    Total {pages.length} Halaman Statis Terdaftar
+                <div className="px-6 lg:px-8 py-5 bg-white border-t-2 border-blue-50 rounded-b-[2rem] rounded-bl-none text-[10px] text-slate-500 font-black uppercase tracking-widest">
+                    <span className="border-l-2 border-cyan-400 pl-3">Total {pages.length} Halaman Statis Terdaftar</span>
                 </div>
             </div>
 
             {/* MODAL DELETE */}
             {isDeleteModalOpen && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/70 backdrop-blur-md p-4">
-                    <div className="bg-white rounded-3xl w-full max-w-sm shadow-2xl text-center p-8 border border-slate-100 animate-in zoom-in-95 duration-200">
-                        <AlertTriangle className="text-red-500 mx-auto mb-4" size={40} />
-                        <h2 className="text-lg font-black text-slate-900">Hapus Halaman Statis?</h2>
-                        <p className="text-xs text-slate-500 mt-1 font-medium leading-relaxed">Halaman statis yang dihapus tidak dapat dipulihkan kembali.</p>
-                        <div className="flex gap-3 mt-6">
-                            <button onClick={() => setIsDeleteModalOpen(false)} className="flex-1 py-3 bg-slate-100 text-slate-700 font-bold text-xs rounded-xl hover:bg-slate-200 transition-colors">Batal</button>
-                            <button onClick={executeDelete} className="flex-1 py-3 bg-red-600 text-white font-bold text-xs rounded-xl shadow-md hover:bg-red-700 transition-colors">Ya, Hapus</button>
+                <div className="fixed inset-0 z-[60] flex items-center justify-center bg-blue-950/80 backdrop-blur-sm p-4">
+                    <div className="bg-white rounded-[2rem] rounded-tr-none w-full max-w-sm shadow-2xl text-center p-8 border-4 border-white/20 animate-in zoom-in-95 duration-200">
+                        <div className="w-20 h-20 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-6 border-4 border-red-100">
+                            <AlertTriangle className="text-red-500" size={36} />
+                        </div>
+                        <h2 className="text-xl font-black text-slate-900 tracking-tight">Hapus Halaman Statis?</h2>
+                        <p className="text-sm text-slate-500 mt-2 font-medium leading-relaxed">Halaman statis yang dihapus tidak dapat dipulihkan kembali.</p>
+                        <div className="flex gap-4 mt-8">
+                            <button onClick={() => setIsDeleteModalOpen(false)} className="flex-1 py-3.5 bg-slate-100 text-slate-700 font-black text-xs rounded-xl hover:bg-slate-200 transition-colors uppercase tracking-wider">Batal</button>
+                            <button onClick={executeDelete} className="flex-1 py-3.5 bg-red-500 hover:bg-red-600 text-white font-black text-xs rounded-xl shadow-md shadow-red-500/20 transition-all active:scale-95 uppercase tracking-wider">Ya, Hapus</button>
                         </div>
                     </div>
                 </div>
@@ -185,12 +181,14 @@ export const PageListPage: React.FC = () => {
 
             {/* MODAL SUKSES */}
             {isSuccessModalOpen && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/70 backdrop-blur-md p-4">
-                    <div className="bg-white rounded-3xl w-full max-w-sm shadow-2xl text-center p-8 border border-slate-100 animate-in zoom-in-95 duration-200">
-                        <CheckCircle className="text-teal-600 mx-auto mb-4" size={40} />
-                        <h2 className="text-lg font-black text-slate-900">Konfirmasi Penghapusan</h2>
-                        <p className="text-xs text-slate-500 mt-1 font-medium">{successMessage}</p>
-                        <button onClick={() => setIsSuccessModalOpen(false)} className="mt-6 w-full py-3 bg-slate-950 text-white font-bold text-xs rounded-xl shadow-md hover:bg-slate-900 transition-all">Tutup Panel</button>
+                <div className="fixed inset-0 z-[60] flex items-center justify-center bg-blue-950/80 backdrop-blur-sm p-4">
+                    <div className="bg-white rounded-[2rem] rounded-tr-none w-full max-w-sm shadow-2xl text-center p-8 border-4 border-white/20 animate-in zoom-in-95 duration-200">
+                        <div className="w-20 h-20 bg-cyan-50 rounded-full flex items-center justify-center mx-auto mb-6 border-4 border-cyan-100">
+                            <CheckCircle className="text-cyan-500" size={40} />
+                        </div>
+                        <h2 className="text-xl font-black text-slate-900 tracking-tight">Konfirmasi Penghapusan</h2>
+                        <p className="text-sm text-slate-500 mt-2 font-medium leading-relaxed">{successMessage}</p>
+                        <button onClick={() => setIsSuccessModalOpen(false)} className="mt-8 w-full py-3.5 bg-blue-950 hover:bg-blue-900 text-white font-black text-xs rounded-xl shadow-lg hover:shadow-xl transition-all uppercase tracking-widest active:scale-95">Tutup Panel</button>
                     </div>
                 </div>
             )}

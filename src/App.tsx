@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate, useNavigate } from 'react-route
 import { DashboardLayout } from './layouts/DashboardLayout';
 import { RolePage } from './pages/role/RolePage';
 import { LoginPage } from './pages/auth/LoginPage';
+import { RegisterPage } from './pages/auth/RegisterPage';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { MenuPage } from './pages/menu/MenuPage';
 import { PermissionPage } from './pages/permission/PermissionPage';
@@ -138,8 +139,6 @@ function App() {
 
           {/* 🏠 PEMETAAN RUTE HARDCODE SISA KORPORAT BUMN PERMINAS */}
 
-          {/* Klaster Tentang Kami */}
-          <Route path="/p/visi-misi" element={<CorporateStaticPage />} />
 
           {/* Klaster Keberlanjutan (ESG) */}
           <Route path="/esg/lingkungan" element={<CorporateStaticPage />} />
@@ -164,6 +163,7 @@ function App() {
 
         {/* --- STRUKTUR RUTE AUTENTIKASI --- */}
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
 
         {/* --- STRUKTUR RUTE DASBOR ADMIN --- */}

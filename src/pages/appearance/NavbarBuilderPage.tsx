@@ -169,38 +169,38 @@ export const NavbarBuilderPage: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6 max-w-6xl mx-auto pb-20 font-sans animate-in fade-in duration-300">
+    <div className="space-y-8 max-w-6xl mx-auto pb-10 font-sans animate-in fade-in duration-300">
       
       {/* Header Panel */}
-      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 bg-white p-8 rounded-[2rem] rounded-tr-none border-2 border-blue-50 shadow-sm hover:border-cyan-100 transition-colors">
         <div>
-          <h1 className="text-2xl font-black text-slate-900 tracking-tight">Perancang Menu Navbar Bertingkat</h1>
-          <p className="text-xs text-slate-500 font-medium mt-1">Rangkai hierarki tautan utama dan dropdown kustom secara mandiri untuk navigasi publik.</p>
+          <h1 className="text-2xl lg:text-3xl font-light text-slate-800 tracking-tight">Perancang Navbar Bertingkat</h1>
+          <p className="text-sm text-slate-500 font-medium mt-2">Rangkai hierarki tautan utama dan dropdown kustom secara mandiri untuk navigasi publik.</p>
         </div>
         <button 
           onClick={handleSaveStructure} disabled={isSaving}
-          className="px-6 py-3 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-black rounded-xl text-xs uppercase tracking-widest shadow-lg shadow-teal-950/20 transition-all active:scale-95 flex items-center gap-2"
+          className="bg-blue-950 hover:bg-blue-900 text-white px-6 py-3.5 rounded-2xl rounded-tr-none flex items-center gap-3 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all font-black text-xs uppercase tracking-widest active:scale-95 group/btn"
         >
-          {isSaving ? <Loader2 className="animate-spin" size={16} /> : <Save size={16} />}
+          {isSaving ? <Loader2 className="animate-spin text-cyan-400" size={16} /> : <Save size={16} className="text-cyan-400 group-hover/btn:rotate-12 transition-transform" />}
           Simpan Hierarki Navigasi
         </button>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         
         {/* --- PANEL KIRI: PENYISIPAN MENU --- */}
         <div className="lg:col-span-1 space-y-6">
-          <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-5">
-            <div className="border-b border-slate-100 pb-3">
-              <h2 className="text-xs font-black text-slate-400 uppercase tracking-widest flex items-center gap-2">
-                <Plus size={14} className="text-teal-600" /> Injeksi Tautan Baru
+          <div className="bg-white p-6 rounded-[2rem] rounded-tr-none border-2 border-blue-50 shadow-sm space-y-6 hover:border-cyan-100 transition-colors">
+            <div className="border-b-2 border-blue-50 pb-4">
+              <h2 className="text-sm font-black text-blue-950 uppercase tracking-widest flex items-center gap-2">
+                <Plus size={16} className="text-cyan-500" /> Injeksi Tautan Baru
               </h2>
             </div>
 
             {/* Opsi Injeksi Cerdas: Halaman Statis */}
-            <div className="space-y-1.5 bg-slate-50/80 p-3 rounded-xl border border-slate-150">
-              <label className="text-[10px] font-bold text-slate-500 uppercase flex items-center gap-1">
-                <FileText size={12} className="text-teal-600" /> Hubungkan Halaman Statis
+            <div className="space-y-2 bg-blue-50/50 p-4 rounded-2xl border border-blue-100">
+              <label className="text-[11px] font-black text-slate-500 uppercase flex items-center gap-2">
+                <FileText size={14} className="text-cyan-600" /> Hubungkan Halaman Statis
               </label>
               <select
                 onChange={e => {
@@ -208,7 +208,7 @@ export const NavbarBuilderPage: React.FC = () => {
                   if (target) handleAutoSelect('PAGE', target.slug, target.title);
                   e.target.value = "";
                 }}
-                className="w-full bg-white border border-slate-200 p-2 rounded-lg text-xs font-semibold text-slate-800 outline-none focus:border-teal-600 shadow-2xs"
+                className="w-full bg-white border border-blue-100 p-3 rounded-xl text-xs font-bold text-slate-800 outline-none focus:border-cyan-500 shadow-sm"
               >
                 <option value="">-- Rujukan Halaman --</option>
                 {pages.map(p => <option key={p.id} value={p.slug}>{p.title}</option>)}
@@ -216,9 +216,9 @@ export const NavbarBuilderPage: React.FC = () => {
             </div>
 
             {/* Opsi Injeksi Cerdas: Kategori Artikel */}
-            <div className="space-y-1.5 bg-slate-50/80 p-3 rounded-xl border border-slate-150">
-              <label className="text-[10px] font-bold text-slate-500 uppercase flex items-center gap-1">
-                <FolderPlus size={12} className="text-emerald-600" /> Hubungkan Arsip Kategori
+            <div className="space-y-2 bg-blue-50/50 p-4 rounded-2xl border border-blue-100">
+              <label className="text-[11px] font-black text-slate-500 uppercase flex items-center gap-2">
+                <FolderPlus size={14} className="text-cyan-600" /> Hubungkan Arsip Kategori
               </label>
               <select
                 onChange={e => {
@@ -226,25 +226,25 @@ export const NavbarBuilderPage: React.FC = () => {
                   if (target) handleAutoSelect('CATEGORY', target.slug, target.name);
                   e.target.value = "";
                 }}
-                className="w-full bg-white border border-slate-200 p-2 rounded-lg text-xs font-semibold text-slate-800 outline-none focus:border-teal-600 shadow-2xs"
+                className="w-full bg-white border border-blue-100 p-3 rounded-xl text-xs font-bold text-slate-800 outline-none focus:border-cyan-500 shadow-sm"
               >
                 <option value="">-- Rujukan Kategori --</option>
                 {categories.map(c => <option key={c.id} value={c.slug}>{c.name}</option>)}
               </select>
             </div>
 
-            <div className="flex items-center gap-2 my-1">
-              <div className="h-px bg-slate-100 flex-1" />
-              <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider">Atau Kustomisasi</span>
-              <div className="h-px bg-slate-100 flex-1" />
+            <div className="flex items-center gap-3 my-2">
+              <div className="h-0.5 bg-blue-50 flex-1" />
+              <span className="text-[9px] font-black text-cyan-600 uppercase tracking-widest">Atau Kustomisasi</span>
+              <div className="h-0.5 bg-blue-50 flex-1" />
             </div>
 
-            <form onSubmit={handleAddMenu} className="space-y-4">
-              <div className="space-y-1 group">
-                <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block group-focus-within:text-teal-600 transition-colors">Level Penempatan</label>
+            <form onSubmit={handleAddMenu} className="space-y-5">
+              <div>
+                <label className="block text-[11px] font-black text-slate-500 mb-2 uppercase tracking-widest">Level Penempatan</label>
                 <select
                   value={targetParentId} onChange={e => setTargetParentId(e.target.value)}
-                  className="w-full border border-slate-200 p-2.5 rounded-xl text-xs font-bold text-teal-700 bg-teal-50/50 outline-none focus:border-teal-600"
+                  className="w-full border border-blue-100 p-3.5 rounded-2xl rounded-tr-none text-xs font-bold text-blue-900 bg-cyan-50 outline-none focus:border-cyan-500 shadow-sm"
                 >
                   <option value="ROOT">👑 Menu Utama (Root Induk)</option>
                   {navItems.map(item => (
@@ -253,31 +253,31 @@ export const NavbarBuilderPage: React.FC = () => {
                 </select>
               </div>
 
-              <div className="space-y-1 group">
-                <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block group-focus-within:text-teal-600 transition-colors">Label Menu *</label>
+              <div>
+                <label className="block text-[11px] font-black text-slate-500 mb-2 uppercase tracking-widest">Label Menu *</label>
                 <input 
                   required value={labelInput} onChange={e => setLabelInput(e.target.value)}
-                  className="w-full border border-slate-200 p-2.5 rounded-xl text-xs font-bold text-slate-900 outline-none focus:border-teal-600 bg-slate-50/50 focus:bg-white transition-all" 
+                  className="w-full p-3.5 bg-white border border-blue-100 rounded-2xl rounded-tr-none focus:ring-4 focus:ring-cyan-500/10 focus:border-cyan-500 outline-none text-sm font-bold text-slate-800 shadow-sm transition-all" 
                   placeholder="e.g. Profil Perusahaan"
                 />
               </div>
 
-              <div className="space-y-1 group">
-                <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider flex justify-between group-focus-within:text-teal-600 transition-colors">
+              <div>
+                <label className="block text-[11px] font-black text-slate-500 mb-2 uppercase tracking-widest flex justify-between">
                   <span>Rute Destinasi URL</span>
-                  <span className="text-[9px] text-slate-400 italic font-normal">kosongkan jika Induk Dropdown</span>
+                  <span className="text-[9px] text-cyan-500 italic font-medium">kosongkan jika dropdown</span>
                 </label>
                 <div className="relative">
-                  <Link2 className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-teal-600 transition-colors" size={14} />
+                  <Link2 className="absolute left-4 top-1/2 -translate-y-1/2 text-cyan-600" size={16} />
                   <input 
                     value={urlInput} onChange={e => setUrlInput(e.target.value)}
-                    className="w-full pl-8 pr-3 border border-slate-200 p-2.5 rounded-xl text-xs font-mono text-slate-800 outline-none focus:border-teal-600 bg-slate-50/50 focus:bg-white transition-all" 
+                    className="w-full pl-10 pr-4 py-3.5 bg-white border border-blue-100 rounded-2xl rounded-tr-none focus:ring-4 focus:ring-cyan-500/10 focus:border-cyan-500 outline-none text-sm font-mono text-slate-800 shadow-sm transition-all" 
                     placeholder="e.g. /p/rute atau #"
                   />
                 </div>
               </div>
 
-              <button type="submit" className="w-full py-3 bg-slate-950 hover:bg-slate-900 text-white font-bold rounded-xl text-xs uppercase tracking-wider shadow-md transition-all active:scale-95">
+              <button type="submit" className="w-full py-3.5 bg-blue-950 hover:bg-blue-900 text-white font-black rounded-2xl rounded-tr-none text-xs uppercase tracking-widest shadow-lg transition-all active:scale-95">
                 Sisipkan ke Struktur
               </button>
             </form>
@@ -285,84 +285,84 @@ export const NavbarBuilderPage: React.FC = () => {
         </div>
 
         {/* --- PANEL KANAN: POHON MENU AKTIF --- */}
-        <div className="lg:col-span-2 space-y-4">
-          <div className="bg-white p-7 rounded-3xl border border-slate-200 shadow-sm space-y-4">
-            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-              <h2 className="text-xs font-black text-slate-400 uppercase tracking-widest flex items-center gap-2">
-                <Layers size={14} className="text-teal-600" /> Pohon Navigasi Aktif
+        <div className="lg:col-span-2 space-y-6">
+          <div className="bg-white p-6 lg:p-8 rounded-[2rem] rounded-tr-none border-2 border-blue-50 shadow-sm space-y-6 hover:border-cyan-100 transition-colors">
+            <div className="flex items-center justify-between border-b-2 border-blue-50 pb-4">
+              <h2 className="text-sm font-black text-blue-950 uppercase tracking-widest flex items-center gap-2">
+                <Layers size={16} className="text-cyan-500" /> Pohon Navigasi Aktif
               </h2>
-              <span className="text-[10px] font-black bg-slate-100 text-slate-600 px-2 py-0.5 rounded uppercase tracking-wider">{navItems.length} Induk</span>
+              <span className="text-[10px] font-black bg-cyan-50 text-cyan-600 px-3 py-1.5 rounded-xl uppercase tracking-widest border border-cyan-100">{navItems.length} Induk</span>
             </div>
 
             {isLoading ? (
-              <div className="py-12 text-center"><Loader2 className="animate-spin mx-auto text-teal-600" size={28} /></div>
+              <div className="py-16 text-center"><Loader2 className="animate-spin mx-auto text-cyan-500" size={32} /></div>
             ) : navItems.length === 0 ? (
-              <div className="py-12 text-center border-2 border-dashed border-slate-200 rounded-2xl bg-slate-50/50">
-                <Globe className="mx-auto text-slate-300 mb-2" size={32} />
-                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Hierarki Menu Kosong</p>
-                <p className="text-xs text-slate-400 mt-1">Gunakan panel kiri untuk menyuntikkan rantai navigasi.</p>
+              <div className="py-16 text-center border-2 border-dashed border-blue-100 rounded-[2rem] bg-slate-50">
+                <Globe className="mx-auto text-slate-300 mb-3" size={40} />
+                <p className="text-xs font-black text-slate-400 uppercase tracking-widest">Hierarki Menu Kosong</p>
+                <p className="text-sm text-slate-500 mt-2 font-medium">Gunakan panel kiri untuk menyuntikkan rantai navigasi.</p>
               </div>
             ) : (
-              <div className="space-y-4">
+              <div className="space-y-5">
                 {navItems.map((item, index) => (
-                  <div key={item.id} className="border border-slate-200 rounded-2xl bg-white shadow-2xs overflow-hidden transition-all group">
+                  <div key={item.id} className="border-2 border-blue-50 rounded-2xl bg-white shadow-sm overflow-hidden transition-all group">
                     
                     {/* Bar Induk Utama */}
-                    <div className="bg-slate-50/80 p-3.5 flex items-center justify-between gap-2 border-b border-slate-100">
-                      <div className="flex items-center gap-2 flex-1">
-                        <span className="w-6 h-6 bg-slate-900 text-white rounded-lg flex items-center justify-center font-black text-xs flex-shrink-0 shadow-2xs">
+                    <div className="bg-blue-50/50 p-4 flex items-center justify-between gap-3 border-b border-blue-100">
+                      <div className="flex items-center gap-3 flex-1">
+                        <span className="w-8 h-8 bg-blue-950 text-white rounded-xl flex items-center justify-center font-black text-xs flex-shrink-0 shadow-sm">
                           {index + 1}
                         </span>
-                        <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 flex-1">
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-2 flex-1">
                           <input 
                             value={item.label} onChange={e => handleUpdateItem(item.id, 'label', e.target.value)}
-                            className="font-bold text-xs text-slate-900 bg-white border border-slate-200 px-2.5 py-1 rounded-lg w-full sm:w-1/2 outline-none focus:border-teal-600 shadow-2xs"
+                            className="font-bold text-sm text-slate-900 bg-white border border-blue-100 px-3 py-2 rounded-xl w-full sm:w-1/2 outline-none focus:border-cyan-500 shadow-sm"
                             placeholder="Label Induk"
                           />
                           <input 
                             value={item.url} onChange={e => handleUpdateItem(item.id, 'url', e.target.value)}
-                            className="font-mono text-xs text-teal-600 bg-white border border-slate-200 px-2.5 py-1 rounded-lg w-full sm:w-1/2 outline-none focus:border-teal-600 shadow-2xs"
+                            className="font-mono text-sm text-cyan-600 bg-white border border-blue-100 px-3 py-2 rounded-xl w-full sm:w-1/2 outline-none focus:border-cyan-500 shadow-sm"
                             placeholder="URL Induk / #"
                           />
                         </div>
                       </div>
 
-                      <div className="flex items-center gap-0.5 flex-shrink-0">
-                        <button type="button" onClick={() => moveMenu(index, 'UP')} disabled={index === 0} className="p-1 text-slate-400 hover:text-slate-900 disabled:opacity-20 transition-colors"><ChevronUp size={16}/></button>
-                        <button type="button" onClick={() => moveMenu(index, 'DOWN')} disabled={index === navItems.length - 1} className="p-1 text-slate-400 hover:text-slate-900 disabled:opacity-20 transition-colors"><ChevronDown size={16}/></button>
-                        <div className="w-px h-4 bg-slate-200 mx-1" />
-                        <button type="button" onClick={() => handleDeleteParent(item.id)} className="p-1 text-slate-400 hover:text-red-600 transition-colors"><Trash2 size={15}/></button>
+                      <div className="flex items-center gap-1 flex-shrink-0">
+                        <button type="button" onClick={() => moveMenu(index, 'UP')} disabled={index === 0} className="p-1.5 text-slate-400 hover:text-blue-950 disabled:opacity-20 transition-colors bg-white rounded-lg border border-slate-200 shadow-sm"><ChevronUp size={16}/></button>
+                        <button type="button" onClick={() => moveMenu(index, 'DOWN')} disabled={index === navItems.length - 1} className="p-1.5 text-slate-400 hover:text-blue-950 disabled:opacity-20 transition-colors bg-white rounded-lg border border-slate-200 shadow-sm"><ChevronDown size={16}/></button>
+                        <div className="w-px h-6 bg-blue-100 mx-2" />
+                        <button type="button" onClick={() => handleDeleteParent(item.id)} className="p-1.5 text-slate-400 hover:text-white hover:bg-red-500 transition-colors bg-white rounded-lg border border-slate-200 shadow-sm"><Trash2 size={15}/></button>
                       </div>
                     </div>
 
                     {/* Area Render Submenu Bertingkat */}
-                    <div className="p-3 bg-white space-y-2 pl-8">
-                      <span className="text-[9px] font-bold text-slate-400 block uppercase tracking-wider">
+                    <div className="p-4 bg-white space-y-3 pl-10 border-l-[3px] border-cyan-400 ml-4 my-2">
+                      <span className="text-[10px] font-black text-slate-400 block uppercase tracking-widest">
                         ↳ Rantai Sub-menu ({item.subMenus.length} item)
                       </span>
                       
                       {item.subMenus.length === 0 ? (
                         <p className="text-[11px] text-slate-400 italic font-medium">Tanpa laci dropdown. Beroperasi sebagai rute mandiri.</p>
                       ) : (
-                        <div className="space-y-2">
+                        <div className="space-y-3">
                           {item.subMenus.map((sub, sIdx) => (
-                            <div key={sIdx} className="flex items-center gap-2 bg-slate-50/60 p-2 rounded-xl border border-slate-150">
-                              <span className="text-[10px] font-black text-teal-600 w-4">{sIdx + 1}.</span>
+                            <div key={sIdx} className="flex items-center gap-3 bg-blue-50/30 p-3 rounded-xl border border-blue-50">
+                              <span className="text-[11px] font-black text-cyan-600 w-5">{sIdx + 1}.</span>
                               <input 
                                 value={sub.label} onChange={e => handleUpdateSubItem(item.id, sIdx, 'label', e.target.value)}
-                                className="text-xs font-bold text-slate-800 bg-white border border-slate-200 px-2 py-1 rounded-md w-1/3 outline-none focus:border-teal-600 shadow-2xs"
+                                className="text-xs font-bold text-slate-800 bg-white border border-blue-100 px-3 py-2 rounded-lg w-1/3 outline-none focus:border-cyan-500 shadow-sm"
                                 placeholder="Sub Label"
                               />
                               <input 
                                 value={sub.url} onChange={e => handleUpdateSubItem(item.id, sIdx, 'url', e.target.value)}
-                                className="text-xs font-mono text-slate-600 bg-white border border-slate-200 px-2 py-1 rounded-md flex-1 outline-none focus:border-teal-600 shadow-2xs"
+                                className="text-xs font-mono text-cyan-600 bg-white border border-blue-100 px-3 py-2 rounded-lg flex-1 outline-none focus:border-cyan-500 shadow-sm"
                                 placeholder="/p/rute"
                               />
                               
-                              <div className="flex items-center gap-0.5">
-                                <button type="button" onClick={() => moveSubMenu(item.id, sIdx, 'UP')} disabled={sIdx === 0} className="p-0.5 text-slate-400 hover:text-slate-900 disabled:opacity-20"><ChevronUp size={14}/></button>
-                                <button type="button" onClick={() => moveSubMenu(item.id, sIdx, 'DOWN')} disabled={sIdx === item.subMenus.length - 1} className="p-0.5 text-slate-400 hover:text-slate-900 disabled:opacity-20"><ChevronDown size={14}/></button>
-                                <button type="button" onClick={() => handleDeleteSubMenu(item.id, sIdx)} className="p-0.5 text-slate-400 hover:text-red-600"><Trash2 size={13}/></button>
+                              <div className="flex items-center gap-1">
+                                <button type="button" onClick={() => moveSubMenu(item.id, sIdx, 'UP')} disabled={sIdx === 0} className="p-1 text-slate-400 hover:text-blue-900 disabled:opacity-20"><ChevronUp size={14}/></button>
+                                <button type="button" onClick={() => moveSubMenu(item.id, sIdx, 'DOWN')} disabled={sIdx === item.subMenus.length - 1} className="p-1 text-slate-400 hover:text-blue-900 disabled:opacity-20"><ChevronDown size={14}/></button>
+                                <button type="button" onClick={() => handleDeleteSubMenu(item.id, sIdx)} className="p-1 text-slate-400 hover:text-red-500"><Trash2 size={14}/></button>
                               </div>
                             </div>
                           ))}
@@ -380,12 +380,14 @@ export const NavbarBuilderPage: React.FC = () => {
       </div>
 
       {isSuccessModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/70 backdrop-blur-md p-4">
-          <div className="bg-white rounded-3xl w-full max-w-sm text-center p-8 animate-in zoom-in-95 duration-200 border border-slate-100">
-            <CheckCircle className="text-teal-600 mx-auto mb-3" size={40} />
-            <h2 className="text-base font-black text-slate-900 uppercase">Struktur Diperbarui</h2>
-            <p className="text-xs text-slate-500 mt-1 font-medium">Rantai hierarki menu berhasil ditransmisikan ke antarmuka publik.</p>
-            <button onClick={() => setIsSuccessModal(false)} className="mt-6 w-full py-3 bg-slate-950 hover:bg-slate-900 text-white font-bold rounded-xl text-xs uppercase tracking-wider shadow-md transition-colors">Tutup Jendela</button>
+        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-blue-950/80 backdrop-blur-sm p-4">
+          <div className="bg-white rounded-[2rem] rounded-tr-none w-full max-w-sm shadow-2xl text-center p-8 border-4 border-white/20 animate-in zoom-in-95 duration-200">
+            <div className="w-20 h-20 bg-cyan-50 rounded-full flex items-center justify-center mx-auto mb-6 border-4 border-cyan-100">
+                <CheckCircle className="text-cyan-500" size={40} />
+            </div>
+            <h2 className="text-xl font-black text-slate-900 tracking-tight">Struktur Diperbarui</h2>
+            <p className="text-sm text-slate-500 mt-2 font-medium leading-relaxed">Rantai hierarki menu berhasil ditransmisikan ke antarmuka publik.</p>
+            <button onClick={() => setIsSuccessModal(false)} className="mt-8 w-full py-3.5 bg-blue-950 hover:bg-blue-900 text-white font-black text-xs rounded-xl shadow-lg hover:shadow-xl transition-all uppercase tracking-widest active:scale-95">Tutup Panel</button>
           </div>
         </div>
       )}

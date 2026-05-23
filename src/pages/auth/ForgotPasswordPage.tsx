@@ -65,11 +65,11 @@ export const ForgotPasswordPage: React.FC = () => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-[#070d16] p-4 relative overflow-hidden font-sans">
-            {/* Latar Belakang Korporat Mewah */}
+        <div className="min-h-screen flex items-center justify-center bg-[#070d16] p-4 relative overflow-hidden font-sans selection:bg-blue-600 selection:text-white">
+            {/* Latar Belakang Biru Tua */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-                <div className="absolute top-1/4 -left-40 w-96 h-96 bg-teal-600/10 rounded-full blur-[120px]"></div>
-                <div className="absolute bottom-1/4 -right-40 w-96 h-96 bg-emerald-600/10 rounded-full blur-[120px]"></div>
+                <div className="absolute top-1/4 -left-40 w-96 h-96 bg-blue-700/10 rounded-full blur-[120px]"></div>
+                <div className="absolute bottom-1/4 -right-40 w-96 h-96 bg-indigo-700/10 rounded-full blur-[120px]"></div>
             </div>
 
             <div className="max-w-lg w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-slate-100 z-10 animate-in fade-in zoom-in-95 duration-500">
@@ -77,7 +77,7 @@ export const ForgotPasswordPage: React.FC = () => {
                 {/* Penampang Atas Eksklusif */}
                 <div className="p-8 bg-slate-950 text-white text-center relative overflow-hidden border-b border-slate-900">
                     <div className="flex justify-center mb-4 relative z-10">
-                        <div className="w-14 h-14 bg-gradient-to-tr from-teal-600 to-emerald-500 rounded-2xl flex items-center justify-center shadow-lg shadow-teal-900/40">
+                        <div className="w-14 h-14 bg-gradient-to-tr from-blue-900 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-900/40">
                             <Layers size={28} className="text-white" />
                         </div>
                     </div>
@@ -89,7 +89,7 @@ export const ForgotPasswordPage: React.FC = () => {
                         {step === 4 && "Akses Pulih!"}
                     </h1>
                     <p className="text-slate-400 text-xs font-medium relative z-10 max-w-xs mx-auto">
-                        {step === 1 && "Masukkan alamat email korporat PT Perminas Anda untuk instruksi pemulihan."}
+                        {step === 1 && "Masukkan alamat email akun Sistem Informasi Desa Pasir Langu Anda untuk instruksi pemulihan."}
                         {step === 2 && "Sistem telah mentransmisikan kode 6 digit rahasia ke kotak masuk Anda."}
                         {step === 3 && "Tetapkan kombinasi kata sandi baru berstandar enkripsi tinggi."}
                         {step === 4 && "Kata sandi otorisasi Anda berhasil disinkronisasi ke dalam server."}
@@ -115,8 +115,8 @@ export const ForgotPasswordPage: React.FC = () => {
                                     <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
                                     <input
                                         type="email" required autoFocus
-                                        className="w-full pl-11 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-900 outline-none focus:bg-white focus:border-teal-600 transition-all"
-                                        placeholder="nama.anda@perminas.com"
+                                        className="w-full pl-11 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-900 outline-none focus:bg-white focus:border-blue-700 transition-all"
+                                        placeholder="admin@pasirlangu.desa.id"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
                                     />
@@ -125,7 +125,7 @@ export const ForgotPasswordPage: React.FC = () => {
 
                             <button
                                 type="submit" disabled={loading}
-                                className="w-full py-4 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-black rounded-xl text-xs uppercase tracking-widest shadow-lg shadow-teal-950/20 active:scale-95 transition-all flex items-center justify-center gap-2 disabled:opacity-70"
+                                className="w-full py-4 bg-gradient-to-r from-blue-900 to-blue-700 hover:from-blue-950 hover:to-blue-800 text-white font-black rounded-xl text-xs uppercase tracking-widest shadow-lg shadow-blue-950/20 active:scale-95 transition-all flex items-center justify-center gap-2 disabled:opacity-70"
                             >
                                 {loading ? <><Loader2 className="animate-spin" size={16} /> Memverifikasi...</> : 'Kirim Instruksi Pemulihan'}
                             </button>
@@ -149,7 +149,7 @@ export const ForgotPasswordPage: React.FC = () => {
                                     <KeyRound className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
                                     <input
                                         type="text" required autoFocus maxLength={6}
-                                        className="w-full pl-11 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 outline-none focus:bg-white focus:border-teal-600 transition-all font-mono font-bold text-base tracking-[0.6em] text-center"
+                                        className="w-full pl-11 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 outline-none focus:bg-white focus:border-blue-700 transition-all font-mono font-bold text-base tracking-[0.6em] text-center"
                                         placeholder="••••••"
                                         value={otp}
                                         onChange={(e) => setOtp(e.target.value.replace(/\D/g, ''))}
@@ -159,7 +159,7 @@ export const ForgotPasswordPage: React.FC = () => {
 
                             <button
                                 type="submit" disabled={loading || otp.length < 6}
-                                className="w-full py-4 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-black rounded-xl text-xs uppercase tracking-widest shadow-lg shadow-teal-950/20 active:scale-95 transition-all flex items-center justify-center gap-2 disabled:opacity-70"
+                                className="w-full py-4 bg-gradient-to-r from-blue-900 to-blue-700 hover:from-blue-950 hover:to-blue-800 text-white font-black rounded-xl text-xs uppercase tracking-widest shadow-lg shadow-blue-950/20 active:scale-95 transition-all flex items-center justify-center gap-2 disabled:opacity-70"
                             >
                                 {loading ? <><Loader2 className="animate-spin" size={16} /> Otentikasi...</> : 'Validasi Token'}
                             </button>
@@ -183,7 +183,7 @@ export const ForgotPasswordPage: React.FC = () => {
                                     <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
                                     <input
                                         type={showPassword ? "text" : "password"} required autoFocus minLength={6}
-                                        className="w-full pl-11 pr-11 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-900 outline-none focus:bg-white focus:border-teal-600 transition-all"
+                                        className="w-full pl-11 pr-11 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-900 outline-none focus:bg-white focus:border-blue-700 transition-all"
                                         placeholder="••••••••"
                                         value={newPassword}
                                         onChange={(e) => setNewPassword(e.target.value)}
@@ -202,7 +202,7 @@ export const ForgotPasswordPage: React.FC = () => {
                                     <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
                                     <input
                                         type={showPassword ? "text" : "password"} required minLength={6}
-                                        className="w-full pl-11 pr-11 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-900 outline-none focus:bg-white focus:border-teal-600 transition-all"
+                                        className="w-full pl-11 pr-11 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-900 outline-none focus:bg-white focus:border-blue-700 transition-all"
                                         placeholder="••••••••"
                                         value={confirmPassword}
                                         onChange={(e) => setConfirmPassword(e.target.value)}
@@ -212,7 +212,7 @@ export const ForgotPasswordPage: React.FC = () => {
 
                             <button
                                 type="submit" disabled={loading || !newPassword || !confirmPassword}
-                                className="w-full py-4 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-black rounded-xl text-xs uppercase tracking-widest shadow-lg shadow-teal-950/20 active:scale-95 transition-all flex items-center justify-center gap-2 disabled:opacity-70 mt-4"
+                                className="w-full py-4 bg-gradient-to-r from-blue-900 to-blue-700 hover:from-blue-950 hover:to-blue-800 text-white font-black rounded-xl text-xs uppercase tracking-widest shadow-lg shadow-blue-950/20 active:scale-95 transition-all flex items-center justify-center gap-2 disabled:opacity-70 mt-4"
                             >
                                 {loading ? <><Loader2 className="animate-spin" size={16} /> Enkripsi...</> : 'Terapkan Sandi Permanen'}
                             </button>
@@ -222,7 +222,7 @@ export const ForgotPasswordPage: React.FC = () => {
                     {/* STEP 4 */}
                     {step === 4 && (
                         <div className="text-center py-6 animate-in zoom-in-95 duration-300">
-                            <div className="w-16 h-16 bg-teal-50 text-teal-600 rounded-full flex items-center justify-center mx-auto mb-4 border border-teal-100">
+                            <div className="w-16 h-16 bg-blue-50 text-blue-700 rounded-full flex items-center justify-center mx-auto mb-4 border border-blue-100">
                                 <CheckCircle size={32} />
                             </div>
                             <h3 className="text-base font-black text-slate-900 mb-1">Kredensial Siap Digunakan</h3>
